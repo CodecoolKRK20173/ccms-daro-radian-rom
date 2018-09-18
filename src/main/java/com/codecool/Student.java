@@ -1,25 +1,32 @@
 package com.codecool;
 
 
+import java.util.ArrayList;
+
 public class Student {
 
     private String id;
     private String userName;
+    private String password;
     private String name;
     private String surname;
     private String phonNumber:
     private String emailAddres:
 
-    private List< Assignment > listOfTakenAssaigments;
-    private List< Assignment > listOfSubmitetAssaigments;
+    private List< Assignment > listOfTakenAssaigments = new ArrayList<>();
+    private List< Assignment > listOfSubmitetAssaigments = new ArrayList<>();
 
-    public Student(String id, String userName, String name, String surname, String phonNumber, String emailAddres) {
+    public Student(String id, String userName,
+                   String password, String name,
+                   String surname, String phonNumber,
+                   String emailAdders) {
         this.id = id;
         this.userName = userName;
+        this.password = password;
         this.name = name;
         this.surname = surname;
         this.phonNumber = phonNumber;
-        this.emailAddres = emailAddres;
+        this.emailAddres = emailAdders;
     }
 
     public void setId(String id) {
@@ -89,7 +96,7 @@ public class Student {
     }
 
     public void submitAssignment( Assignment assignment ){
-
+        listOfTakenAssaigments.get( ? );
         listOfSubmitetAssaigments.add(assignment);
     }
 
