@@ -16,14 +16,19 @@ public class StudentsDAO {
         listOfStudents = loader,getList();
     }
 
-
-
-    public void createdListOfStudents(){
+    public void fillListOfStudents(){
         for ( int i =0; i < listOfStudents.length(); i++){
             for( int j =0; j < listOfStudents[i].length(); j++){
                 String id = listOfStudents[i][0];
-
+                String userName = listOfStudents[i][1];
+                String password = listOfStudents[i][2];
+                String name = listOfStudents[i][3];
+                String surname = listOfStudents[i][4];
+                String phonNumber = listOfStudents[i][5];
+                String emailAdders = listOfStudents[i][6];
+                studentsList.add(new Student( id,userName, password ,name, surname, phonNumber, emailAdders ));
             }
+
         }
     }
 
@@ -35,7 +40,6 @@ public class StudentsDAO {
         studentsList.remove(student);
     }
 
-
-
+    public 
 
 }
