@@ -1,6 +1,5 @@
 package com.codecool;
 
-
 import java.util.List;
 
 public class StudentsDAO {
@@ -8,7 +7,6 @@ public class StudentsDAO {
     private List<Student> studentsList;
     private Loader loader;
     private String[][] listOfStudents;
-
 
     public StudentsDAO(List<Student> studentsList) {
         this.studentsList = studentsList;
