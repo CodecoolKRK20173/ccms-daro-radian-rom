@@ -16,6 +16,7 @@ public class Student {
     private List< Assignment > listOfTakenAssaingments = new ArrayList<>();
     private List< Assignment > listOfSubmitedAssaigments = new ArrayList<>();
 
+
     public Student(String id, String userName,
                    String password, String name,
                    String surname, String phonNumber,
@@ -77,6 +78,10 @@ public class Student {
 
     public String getSurname() {
         return surname;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
 
