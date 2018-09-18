@@ -13,8 +13,8 @@ public class Student {
     private String phonNumber:
     private String emailAddres:
 
-    private List< Assignment > listOfTakenAssaigments = new ArrayList<>();
-    private List< Assignment > listOfSubmitetAssaigments = new ArrayList<>();
+    private List< Assignment > listOfTakenAssaingments = new ArrayList<>();
+    private List< Assignment > listOfSubmitedAssaigments = new ArrayList<>();
 
     public Student(String id, String userName,
                    String password, String name,
@@ -81,23 +81,23 @@ public class Student {
 
 
     public List<Assignment> getListOfTakenAssaigments() {
-        return listOfTakenAssaigments;
+        return listOfTakenAssaingments;
     }
 
     public List<Assignment> getListOfSubmitetAssaigments() {
-        return listOfSubmitetAssaigments;
+        return listOfSubmitedAssaigments;
     }
 
     public void login(){
     }
 
     public void takeAssignment( Assignment assignment ){
-        listOfTakenAssaigments.add(assignment);
+        listOfTakenAssaingments.add(assignment);
     }
 
     public void submitAssignment( Assignment assignment ){
-        listOfTakenAssaigments.get( ? );
-        listOfSubmitetAssaigments.add(assignment);
+        listOfTakenAssaingments.get( ? );
+        listOfSubmitedAssaigments.add(assignment);
     }
 
     public void viewMyGrades(){
