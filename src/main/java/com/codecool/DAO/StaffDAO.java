@@ -1,5 +1,6 @@
 package com.codecool.DAO;
 
+import com.codecool.model.assignment.SubmittedAssignment;
 import com.codecool.model.staff.Staff;
 
 import java.util.ArrayList;
@@ -46,7 +47,14 @@ public class StaffDAO {
     }
 
     public void removeStaff(String staffId) {
-        //TODO
+        List<Staff> staffList = loadStaff();
+        Staff staffToRemove = null;
+
+        for (Staff staff: staffList) {
+            if (staff.getId().equals(staffId)) staffToRemove = staff;
+        }
+        staffList.remove(staffToRemove);
+        saveStaff(staffList);
     }
 
     private void saveStaff(List<Staff> staffList) {
