@@ -29,14 +29,6 @@ public class StudentsDAO {
         }
     }
 
-    public void addStudent( Student student ){
-        studentsList.add( student );
-    }
-
-    public void removeStudent( Student student ){
-        studentsList.remove( student );
-    }
-
     public void exportListOfStudent(){
         for ( int i =0; i < studentsList.size(); i++ ){
             listOfStudents[i][0] = studentsList.get(i).getId();
@@ -49,5 +41,19 @@ public class StudentsDAO {
         }
     }
 
+    public void addStudent( Student student ){
+        studentsList.add( student );
+    }
+
+    public void removeStudent( Student student ){
+        studentsList.remove( student );
+    }
+
+    public String toString( ){
+        StringBuilder sBuilder = new StringBuilder();
+        for( Student student  : studentsList ){
+            sBuilder.append(student.toString() + "\n");
+        }
+    }
 
 }
