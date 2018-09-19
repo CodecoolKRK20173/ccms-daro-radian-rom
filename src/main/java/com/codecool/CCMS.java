@@ -2,30 +2,37 @@ package com.codecool;
 
 import com.codecool.customexceptions.NoControllerForUserException;
 import com.codecool.customexceptions.UserNotLoggedException;
+import com.codecool.login.Account;
 import com.codecool.login.LoginController;
 import com.codecool.login.UserSwitch;
-import com.codecool.user.User;
 import com.codecool.user.UserController;
-import com.codecool.view.View;
+import com.codecool.view.CCMSView;
 
 public class CCMS {
     private LoginController loginController;
     private boolean isRunning;
     private final String[] MENU_OPTIONS = {"Login"};
-    private final String ASK_FOR_INPUT = "Please enter a number of option from above list:";
-    private View view;
-    private User user;
+    private final String BEFORE_INPUT_MESSAGE = "Please enter a number of option from above list:";
+    private final String OPTION_NOT_RECOGNIZED_MESSAGE = "Sorry, this option seems to be corrupted." +
+                                                         " Please, contact the administrator";
+    private final String ASK_FOR_OPTION = "Option: ";
+
+    private CCMSView view;
+    private Account account;
     private UserController userController;
 
-    public CCMS(View view){
+    public CCMS(CCMSView view){
         loginController = new LoginController(view);
         this.view = view;
         isRunning = true;
     }
 
     public void run(){
+        view.clearScreen();
+        view.printAppTitle();
+        view.waitAWhile();
         while (isRunning){
-            if (loginController.isUserLogger()){
+            if (loginController.isUserLogged()){
                 userController.run();
             } else {
                 handleMenu();
@@ -34,34 +41,48 @@ public class CCMS {
     }
 
     private void handleMenu(){
+        view.clearScreen();
+        view.printAppTitle();
         view.printOptions(MENU_OPTIONS);
         int option = -1;
 
         do{
-            view.askForNumber(ASK_FOR_INPUT);
+            view.println(BEFORE_INPUT_MESSAGE);
+            option = view.askForNumber(ASK_FOR_OPTION);
         } while (option < 0 || option > MENU_OPTIONS.length);
 
-        switch (option){
-            case 1:
-                handleLogin();
-                break;
-            case 0:
-                isRunning = false;
-                break;
+        if (option == view.getExitInput()){
+            isRunning = false;
+        } else {
+            switch (option){
+                case 1:
+                    handleLogin();
+                    break;
+                default:
+                    view.printError(OPTION_NOT_RECOGNIZED_MESSAGE);
+                    view.waitAWhile();
+                    break;
+            }
         }
     }
 
     private void handleLogin(){
         loginController.logIn();
+        if (loginController.isUserLogged()){
+            initializeUserController();
+        }
+    }
+
+    private void initializeUserController(){
         try{
-            user = loginController.getLoggedUser();
+            account = loginController.getLoggedUser();
         } catch (UserNotLoggedException e){
             view.printError(e.getMessage());
             return;
         }
 
         try{
-            userController = new UserSwitch().getControllerForUser(user);
+            userController = new UserSwitch().getControllerForUser(account);
         } catch (NoControllerForUserException e){
             view.printError(e.getMessage());
         }

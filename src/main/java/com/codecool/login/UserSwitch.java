@@ -5,22 +5,21 @@ import com.codecool.user.*;
 
 public class UserSwitch {
     private final String UNKNOWN_USER_ERROR =
-            String.format("Given user is not recognized by %s class.", getClass().getName());
+            String.format("Given user is not recognized by %s class", getClass().getName());
 
-    public UserController getControllerForUser(User user) throws NoControllerForUserException{
-        if (user instanceof Manager){
-            return new ManagerController();
+    public UserController getControllerForUser(Account account) throws NoControllerForUserException{
+        Access accountAccessLevel = account.getAccess();
+        switch (accountAccessLevel) {
+            case MANAGER:
+                return new ManagerController();
+            case EMPLOYEE:
+                return new AdministrativeEmployeeController();
+            case MENTOR:
+                return new MentorController();
+            case STUDENT:
+                return new StudentController();
+            default:
+                throw new NoControllerForUserException(UNKNOWN_USER_ERROR);
         }
-        if (user instanceof AdministrativeEmployee){
-            return new AdministrativeEmployeeController();
-        }
-        if (user instanceof Mentor){
-            return new MentorController();
-        }
-        if (user instanceof Student){
-            return new StudentController();
-        }
-
-        throw new NoControllerForUserException(UNKNOWN_USER_ERROR);
     }
 }
