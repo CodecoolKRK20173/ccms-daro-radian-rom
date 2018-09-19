@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student extends User {
-    public static class Student {
 
         private final int ID_TEXT_WIDTH = 4;
         private final int USERNAME_TEXT_WIDTH = 15;
@@ -127,9 +126,5 @@ public class Student extends User {
             return sBuilder.toString();
 
         }
-
-
-
-
-    }
 }
+

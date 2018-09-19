@@ -11,13 +11,11 @@ public class StudentsDAO {
     public StudentsDAO() {
     }
 
+    public List<Student> getListOfStudents(){
 
-    public List<com.codecool.user.Student.Student> getListOfStudents(){
-
-        DAOLoader loader = new DAOLoader();
-        loader = new DAOLoader( "StudentsCSV.CSV");
-        List<com.codecool.user.Student.Student> studentsList = new ArrayList<com.codecool.user.Student.Student>();
-
+        DAOLoader loader = new DAOLoader("StudentsCSV.CSV");
+        String[][] loader = loader.getFileContent();
+        List<Student> studentsList = new ArrayList<Student>();
         for ( int i =0; i < loader.length; i++){
             for( int j =0; j < loader[i].length; j++){
                 String id = loader[i][0];
@@ -27,13 +25,13 @@ public class StudentsDAO {
                 String surname = loader[i][4];
                 String phonNumber = loader[i][5];
                 String emailAdders = loader[i][6];
-                studentsList.add(new com.codecool.user.Student.Student( id,userName, password ,name, surname, phonNumber, emailAdders ));
+                studentsList.add(new Student( id,userName, password ,name, surname, phonNumber, emailAdders ));
             }
         }
         return studentsList;
     }
 
-    public String[][] exportListOfStudent(List<com.codecool.user.Student.Student> studentList ){
+    public String[][] exportListOfStudent(List<Student> studentList ){
 
         String[][] listOfStudents = new String[5][5];
         for ( int i =0; i < studentList.size(); i++ ){
@@ -48,19 +46,20 @@ public class StudentsDAO {
         return listOfStudents;
     }
 
-    public String[][] addStudent( com.codecool.user.Student.Student student ){
-        List<com.codecool.user.Student.Student> studentsList = getListOfStudents();
+    public String[][] addStudent( Student student ){
+        List<Student> studentsList = getListOfStudents();
         return exportListOfStudent(studentsList.add( student ));
     }
 
-    public String[][] removeStudent( com.codecool.user.Student.Student student ){
-        List<com.codecool.user.Student.Student> studentsList = getListOfStudents();
+    public String[][] removeStudent( Student student ){
+        List<Student> studentsList = getListOfStudents();
         return exportListOfStudent(studentsList.remove( student ));
     }
 
     public String toString( ){
+        List<Student>studentsList = getListOfStudents();
         StringBuilder sBuilder = new StringBuilder();
-        for( Student.Student student  : studentsList ){
+        for( Student student  : studentsList ){
             sBuilder.append(student.toString() + "\n");
         }
         return sBuilder.toString();
