@@ -1,4 +1,8 @@
 package com.codecool.login;
 
-public class Access {
+public enum Access {
+    MANAGER,
+    EMPLOYEE,
+    MENTOR,
+    STUDENT;
 }

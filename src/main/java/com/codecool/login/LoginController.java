@@ -1,7 +1,6 @@
 package com.codecool.login;
 
 import com.codecool.customexceptions.UserNotLoggedException;
-import com.codecool.user.User;
 import com.codecool.view.View;
 
 public class LoginController {
@@ -18,7 +17,7 @@ public class LoginController {
     private final String LOGIN_COINTAINS_WHITE_SPACE_MESSAGE = "Login cannot contain white spaces";
     private final String AUTHENTICATION_FAILED_MESSAGE = "Sorry, given login and password doesn't match";
 
-    private User loggedUser;
+    private Account loggedAccount;
     private boolean isUserLogged;
     private View view;
 
@@ -51,7 +50,8 @@ public class LoginController {
                 // create a new user and store in loggedUser
                 isUserLogged = true;
             } else {
-
+                view.println(AUTHENTICATION_FAILED_MESSAGE);
+                view.waitAWhile();
             }
         }
     }
@@ -83,21 +83,26 @@ public class LoginController {
     }
 
     private boolean validatePassword(String login, String password){
+        AccountsDAO accountsDAO = new AccountsDAO();
         // TO DO
+        Account account = accountsDAO.getAccount(login);
+        if (account.getPassword().equals(password)){
+            return true;
+        }
         return false;
     }
 
     public void logOut(){
-        loggedUser = null;
+        isUserLogged = false;
     }
 
     public boolean isUserLogged(){
         return isUserLogged;
     }
 
-    public User getLoggedUser() throws UserNotLoggedException {
+    public Account getLoggedUser() throws UserNotLoggedException {
         if (isUserLogged){
-            return loggedUser;
+            return loggedAccount;
         }
 
         throw new UserNotLoggedException(NO_USER_ERROR_MESSAGE);
