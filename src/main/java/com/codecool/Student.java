@@ -2,6 +2,7 @@ package com.codecool;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Student {
 
@@ -108,7 +109,6 @@ public class Student {
     }
 
     public void submitAssignment( Assignment assignment ){
-        listOfTakenAssaingments.get( ? );
         listOfSubmitedAssaigments.add(assignment);
     }
 
