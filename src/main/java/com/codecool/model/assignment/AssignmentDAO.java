@@ -24,6 +24,18 @@ public class AssignmentDAO {
         saveAssignments(assignments);
     }
 
+    public  Assignment getAssignmentById(String id) {
+        List<Assignment> assignments = loadAssignments();
+        Assignment assignment = null;
+
+        for (Assignment a: assignments) {
+            if (a.getId().equals(id)) {
+                assignment = a;
+            }
+        }
+        return assignment;
+    }
+
     public List<Assignment> loadAssignments() {
         List<Assignment> assignments = new ArrayList<Assignment>();
         String[][] fileContent = daoLoader.getFileContent();
@@ -52,6 +64,8 @@ public class AssignmentDAO {
         daoLoader.saveContentToFile(assignmentsDataToSave.toArray(new String[][]{}));
 
     }
+
+
 
 
 }
