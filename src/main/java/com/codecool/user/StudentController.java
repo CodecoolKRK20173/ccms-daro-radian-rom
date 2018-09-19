@@ -1,10 +1,10 @@
 package com.codecool.user;
 
-import com.codecool.Assignment;
-import com.codecool.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.codecool.DAO.AssignmentDAO;
+import com.codecool.DAO.SubmittedAssignmentDAO;
+import com.codecool.model.assignment.Assignment;
+import com.codecool.view.View;
 
 public class StudentController extends UserController {
 
@@ -14,8 +14,8 @@ public class StudentController extends UserController {
     public void run() {
         System.out.println("Student");
         System.out.println("   1. View my grades\n" +
-                "   2. Submit assigment.\n" +
-                "   3. Show list of assigments.\n" +
+                "   2. Submit assignment.\n" +
+                "   3. Show list of assignments.\n" +
                 "   0. Exit\n");
 
         while(isRunning){
@@ -27,13 +27,13 @@ public class StudentController extends UserController {
         int userChoice = view.askForNumber("Enter number :");
         switch (userChoice) {
             case (1):
-//                showListOfStudenst();
+//                viewMyGrades();
                 break;
             case (2):
-//                addStudent();
+//                SubmitAssignment();
                 break;
             case (3):
-                showListOfAssigments();
+//                showListOfAssigments();
                 break;
             case (0):
                 isRunning = false;
@@ -42,15 +42,33 @@ public class StudentController extends UserController {
     }
 
 
-        public void showListOfAssigments(){
+    public void showListOfAssigments(){
+
+    }
+
+    public void viewMyGrades(){
+        SubmittedAssignmentDAO submittedAssignmentDAO = new SubmittedAssignmentDAO();
+
+    /*
+    pobieram liste ocenionych zadan i wyciagam te które naleza do konkretnego studenta
+     */
+    }
+
+    public void submitAssignment(){
+        AssignmentDAO assignmentDAO = new AssignmentDAO();
+        Assignment assignment = assignmentDAO.getAssignmentById(String id);
+        SubmittedAssignmentDAO submittedAssignmentDAO = new SubmittedAssignmentDAO();
+        submittedAssignmentDAO.addSubmittedAssignment("assignmentId", "studentId");
+
+    /*
+    pobieram zadanie z listy zadan i przerzucam do listy submited assignmet z indexem konkretnego studenat
+    */
+
+    }
 
 
 
 
-        }
-//    private List< Assignment > listOfTakenAssaingments = new ArrayList<>();
-//    private List< Assignment > listOfSubmitedAssaigments = new ArrayList<>();
-//
 //    public Assignment takeAssiagnment(Assignment assignment ){
 //        AssignmentDAO assigmentDAO = new AssignmentDAO();
 //        List< Assignment > listofAssgiment = assigmentDAO.loadAssignments();
@@ -69,7 +87,6 @@ public class StudentController extends UserController {
 //        return listofAssgiment.add(assignment);
 //    }
 //
-//    public void viewMyGrades(){
-//    }
+
 
 }

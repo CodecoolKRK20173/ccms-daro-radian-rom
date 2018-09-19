@@ -4,8 +4,6 @@ import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.view.View;
 
-import java.util.List;
-
 public class MentorController extends UserController {
 
     private boolean isRunning = true;
@@ -13,7 +11,7 @@ public class MentorController extends UserController {
 
     @Override
     public void run() {
-        System.out.println("Metors");
+        System.out.println("Mentors");
         System.out.println("   1. Show student\n" +
                 "   2. Add Student\n" +
                 "   3. Remove Student\n" +
@@ -43,8 +41,7 @@ public class MentorController extends UserController {
 //                removeStudent(choice);
                 break;
             case (5):
-                AssignmentDAO assignmentDAO = new AssignmentDAO();
-                assignmentDAO.addAssignment("id", "name", "mentor", "description");
+                addNewAssignment();
                 break;
             case (0):
                 isRunning = false;
@@ -71,12 +68,19 @@ public class MentorController extends UserController {
         StudentsDAO studentsDAO = new StudentsDAO();
         Student student = studentsDAO.getStudentFromList( number );
         System.out.println(student.toString());
+
+        /*
+        wyciagam z listy "submited zadan" zadania z indexem danego studenta
+        i wybrane zadanie oceniam.
+         */
+
     }
 
-//    public String addAssigment() {
-//        return id;
-//    }
-//
+    public void addNewAssignment() {
+            AssignmentDAO assignmentDAO = new AssignmentDAO();
+            assignmentDAO.addAssignment("id", "name", "mentor", "description");
+    }
+
 //    public String gradeAssigment() {
 //        return id;
 //    }

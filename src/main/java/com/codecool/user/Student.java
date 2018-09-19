@@ -73,7 +73,6 @@ public class Student extends User {
             return emailAddres;
         }
 
-
         public String getName() {
             return name;
         }
@@ -86,7 +85,6 @@ public class Student extends User {
             return password;
         }
 
-
         public String toString(){
             StringBuilder sBuilder = new StringBuilder();
             sBuilder.append(String.format("ID:%" + ID_TEXT_WIDTH + "s", id));
@@ -96,9 +94,7 @@ public class Student extends User {
             sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", surname));
             sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", phonNumber));
             sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", emailAddres));
-
             return sBuilder.toString();
-
         }
 }
 
