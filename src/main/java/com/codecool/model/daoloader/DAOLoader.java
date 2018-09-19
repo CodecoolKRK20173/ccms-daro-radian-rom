@@ -1,20 +1,40 @@
 package com.codecool.model.daoloader;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class DAOLoader {
-private String sourceFileName;
+    private String sourceFileName;
 
     public DAOLoader(String sourceFileName) {
         this.sourceFileName = sourceFileName;
     }
 
     public String[][] getFileContent() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream(sourceFileName);
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        //File tmpSourceFile = new File(classLoader.getResource(sourceFileName).getFile());
+        Path tempPath = Paths.get("src/main/resources/" + sourceFileName);
+
+        if (!Files.exists(tempPath)) {
+            File tmpSourceFile = new File("src/main/resources/" + sourceFileName);
+            try {
+                FileWriter fileWriter = new FileWriter(tmpSourceFile);
+                fileWriter.write("");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //InputStream inputStream = classLoader.getResourceAsStream(sourceFileName);
+        //inputStream = classLoader.getResourceAsStream(sourceFileName);
+        InputStreamReader inputStreamReader = new InputStreamReader(classLoader.getResourceAsStream(sourceFileName)); // gdy plik csv nie istnieje wywala NullPointera
+
+//        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
 
         ArrayList<String[]> fileContent = new ArrayList<String[]>();
 
@@ -28,7 +48,7 @@ private String sourceFileName;
             e.printStackTrace();
         }
 
-        return  fileContent.toArray(new  String[][]{});
+        return fileContent.toArray(new String[][]{});
     }
 
     public void saveContentToFile(String[][] contentToSave) {
@@ -48,10 +68,10 @@ private String sourceFileName;
     private String turnContentToString(String[][] contentToSave) {
         StringBuilder stringBuilderContent = new StringBuilder();
 
-        for (String[] row: contentToSave) {
+        for (String[] row : contentToSave) {
             StringBuilder stringBuilderRow = new StringBuilder();
 
-            for (String string: row) {
+            for (String string : row) {
                 stringBuilderRow.append(string);
                 stringBuilderRow.append("\t");
             }
