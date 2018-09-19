@@ -4,49 +4,62 @@ import java.util.List;
 
 public class StudentsDAO {
 
-    private List<Student> studentsList;
-    private Loader loader;
-    private String[][] listOfStudents;
-
-    public StudentsDAO(List<Student> studentsList) {
-        this.studentsList = studentsList;
-        louder = new Loader();
-        listOfStudents = loader,getList();
+    public StudentsDAO() {
     }
 
-    public void fillListOfStudents(){
-        for ( int i =0; i < listOfStudents.length(); i++){
-            for( int j =0; j < listOfStudents[i].length(); j++){
-                String id = listOfStudents[i][0];
-                String userName = listOfStudents[i][1];
-                String password = listOfStudents[i][2];
-                String name = listOfStudents[i][3];
-                String surname = listOfStudents[i][4];
-                String phonNumber = listOfStudents[i][5];
-                String emailAdders = listOfStudents[i][6];
+    public List<Student> getListOfStudents(){
+
+        DAOLoader loader = new DAOLoader("StudentsCSV.CSV");
+        String[][] loader = loader.getFileContent();
+        List<Student> studentsList = new ArrayList<Student>();
+        for ( int i =0; i < loader.length; i++){
+            for( int j =0; j < loader[i].length; j++){
+                String id = loader[i][0];
+                String userName = loader[i][1];
+                String password = loader[i][2];
+                String name = loader[i][3];
+                String surname = loader[i][4];
+                String phonNumber = loader[i][5];
+                String emailAdders = loader[i][6];
                 studentsList.add(new Student( id,userName, password ,name, surname, phonNumber, emailAdders ));
             }
         }
+        return studentsList;
     }
 
-    public void addStudent( Student student ){
-        studentsList.add( student );
-    }
+    public String[][] exportListOfStudent(List<Student> studentList ){
 
-    public void removeStudent( Student student ){
-        studentsList.remove( student );
-    }
-
-    public void saveListOfStudenttoString(){
-        for ( int i =0; i < studentsList.size(); i++ ){
-            listOfStudents[i][0] = studentsList.get(i).getId();
-            listOfStudents[i][1] = studentsList.get(i).getUserName();
-            listOfStudents[i][2] = studentsList.get(i).getPassword();
-            listOfStudents[i][3] = studentsList.get(i).getName();
-            listOfStudents[i][4] = studentsList.get(i).getSurname();
-            listOfStudents[i][5] = studentsList.get(i).getPhonNumber();
-            listOfStudents[i][6] = studentsList.get(i).getEmailAddres();
+        String[][] listOfStudents = new String[5][5];
+        for ( int i =0; i < studentList.size(); i++ ){
+            listOfStudents[i][0] = studentList.get(i).getId();
+            listOfStudents[i][1] = studentList.get(i).getUserName();
+            listOfStudents[i][2] = studentList.get(i).getPassword();
+            listOfStudents[i][3] = studentList.get(i).getName();
+            listOfStudents[i][4] = studentList.get(i).getSurname();
+            listOfStudents[i][5] = studentList.get(i).getPhonNumber();
+            listOfStudents[i][6] = studentList.get(i).getEmailAddres();
         }
+        return listOfStudents;
     }
+
+    public String[][] addStudent( Student student ){
+        List<Student> studentsList = getListOfStudents();
+        return exportListOfStudent(studentsList.add( student ));
+    }
+
+    public String[][] removeStudent( Student student ){
+        List<Student> studentsList = getListOfStudents();
+        return exportListOfStudent(studentsList.remove( student ));
+    }
+
+    public String toString( ){
+        List<Student>studentsList = getListOfStudents();
+        StringBuilder sBuilder = new StringBuilder();
+        for( Student student  : studentsList ){
+            sBuilder.append(student.toString() + "\n");
+        }
+        return sBuilder.toString();
+    }
+
 
 }
