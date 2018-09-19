@@ -5,19 +5,19 @@ import java.time.LocalDate;
 public class SubmittedAssignment {
     private String assignmentId;
     private String studentId;
-    private LocalDate submitted;
+    private String submittedDate;
     private String mentorGraded;
     private int grade;
-    private LocalDate graded;
+    private String gradedDate;
     private boolean isGraded;
 
-    public SubmittedAssignment(String assignmentId, String studentId) {
+    public SubmittedAssignment(String assignmentId, String studentId, String submittedDate) {
         this.assignmentId = assignmentId;
         this.studentId = studentId;
-        submitted = LocalDate.now();
+        this.submittedDate = submittedDate;
         mentorGraded = "";
         grade = 0;
-        graded = null;
+        gradedDate = null;
         isGraded = false;
     }
 
@@ -29,8 +29,8 @@ public class SubmittedAssignment {
         return studentId;
     }
 
-    public LocalDate getSubmitted() {
-        return submitted;
+    public String getSubmittedDate() {
+        return submittedDate;
     }
 
     public String getMentorGraded() {
@@ -44,14 +44,14 @@ public class SubmittedAssignment {
         return grade;
     }
 
-    public String getGraded() {
-        if (graded != null) {
-            return graded.toString();
+    public String getGradedDate() {
+        if (gradedDate != null) {
+            return gradedDate.toString();
         }
         return "not graded yet";
     }
 
-    public boolean isGraded() {
+    public boolean getIsGraded() {
         return isGraded;
     }
 
@@ -63,8 +63,8 @@ public class SubmittedAssignment {
         this.grade = grade;
     }
 
-    public void setGraded(LocalDate graded) {
-        this.graded = graded;
+    public void setGradedDate(LocalDate gradedDate) {
+        this.gradedDate = gradedDate.toString();
     }
 
     public void setGraded(boolean graded) {

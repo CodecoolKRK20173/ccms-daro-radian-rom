@@ -1,12 +1,12 @@
-package com.codecool.model.daoloader;
+package com.codecool.DAO;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public class DAOLoader {
+public class DataLoader {
     private String sourceFileName;
 
-    public DAOLoader(String sourceFileName) {
+    public DataLoader(String sourceFileName) {
         this.sourceFileName = sourceFileName;
     }
 
@@ -20,6 +20,7 @@ public class DAOLoader {
             try {
                 FileWriter fileWriter = new FileWriter(tmpSourceFile);
                 fileWriter.write("");
+                fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

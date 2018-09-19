@@ -1,6 +1,6 @@
-package com.codecool.model.assignment;
+package com.codecool.DAO;
 
-import com.codecool.model.daoloader.DAOLoader;
+import com.codecool.model.assignment.Assignment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +12,10 @@ public class AssignmentDAO {
     final private int DESCRIPTION_INDEX = 3;
     final private String sourceFileName = "assignments.csv";
 
-    private DAOLoader daoLoader;
+    private DataLoader dataLoader;
 
     public AssignmentDAO() {
-        this.daoLoader = new DAOLoader(sourceFileName);
+        this.dataLoader = new DataLoader(sourceFileName);
     }
 
     public void addAssignment(String id, String name, String mentor, String description) {
@@ -38,7 +38,7 @@ public class AssignmentDAO {
 
     public List<Assignment> loadAssignments() {
         List<Assignment> assignments = new ArrayList<Assignment>();
-        String[][] fileContent = daoLoader.getFileContent();
+        String[][] fileContent = dataLoader.getFileContent();
 
         for (String[] row : fileContent) {
             Assignment assignmentToAdd = new Assignment(row[ID_INDEX],
@@ -61,7 +61,7 @@ public class AssignmentDAO {
             assignmentsDataToSave.add(assignmentData);
         }
 
-        daoLoader.saveContentToFile(assignmentsDataToSave.toArray(new String[][]{}));
+        dataLoader.saveContentToFile(assignmentsDataToSave.toArray(new String[][]{}));
 
     }
 
