@@ -1,7 +1,10 @@
 package com.codecool;
 
 
+import com.codecool.model.assignment.Assignment;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Student {
 
@@ -13,7 +16,7 @@ public class Student {
     private String phonNumber:
     private String emailAddres:
 
-    private List< Assignment > listOfTakenAssaingments = new ArrayList<>();
+    private List<Assignment> listOfTakenAssaingments = new ArrayList<>();
     private List< Assignment > listOfSubmitedAssaigments = new ArrayList<>();
 
     public Student(String id, String userName,

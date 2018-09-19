@@ -37,7 +37,7 @@ public class StudentsDAO {
         studentsList.remove( student );
     }
 
-    public void exportListOfStudent(){
+    public void saveListOfStudenttoString(){
         for ( int i =0; i < studentsList.size(); i++ ){
             listOfStudents[i][0] = studentsList.get(i).getId();
             listOfStudents[i][1] = studentsList.get(i).getUserName();
@@ -48,6 +48,5 @@ public class StudentsDAO {
             listOfStudents[i][6] = studentsList.get(i).getEmailAddres();
         }
     }
-
 
 }
