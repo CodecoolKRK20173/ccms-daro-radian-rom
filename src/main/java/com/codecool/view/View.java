@@ -60,7 +60,7 @@ public class View {
     }
 
     public int askForNumber(String askMessage){
-        println(askMessage);
+        print(askMessage);
         int input = 0;
         boolean isInputANumber = false;
 
