@@ -1,6 +1,6 @@
 package com.codecool.view;
 
-import com.codecool.StudentsDAO;
+import com.codecool.DAO.StudentsDAO;
 
 public class ViewStudentDAO extends View {
 

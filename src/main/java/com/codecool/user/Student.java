@@ -1,20 +1,15 @@
 package com.codecool.user;
 
-import com.codecool.Assignment;
-import com.codecool.model.assignment.AssignmentDAO;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Student extends User {
 
         private final int ID_TEXT_WIDTH = 4;
-        private final int USERNAME_TEXT_WIDTH = 15;
-        private final int PASSWORD_TEXT_WIDTH= 15;
-        private final int NAME_TEXT_WIDTH = 15;
-        private final int SURNAME_TEXT_WIDTH = 15;
-        private final int PHON_NUMBER_TEXT_WIDTH = 15;
-        private final int EMAIL_ADDRES_TEXT_WIDTH = 15;
+        private final int USERNAME_TEXT_WIDTH = 5;
+        private final int PASSWORD_TEXT_WIDTH= 5;
+        private final int NAME_TEXT_WIDTH = 5;
+        private final int SURNAME_TEXT_WIDTH = 5;
+        private final int PHON_NUMBER_TEXT_WIDTH = 5;
+        private final int EMAIL_ADDRES_TEXT_WIDTH = 5;
 
         private String id;
         private String userName;
@@ -96,6 +91,11 @@ public class Student extends User {
             StringBuilder sBuilder = new StringBuilder();
             sBuilder.append(String.format("ID:%" + ID_TEXT_WIDTH + "s", id));
             sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", userName));
+            sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", password));
+            sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", name));
+            sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", surname));
+            sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", phonNumber));
+            sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", emailAddres));
 
             return sBuilder.toString();
 

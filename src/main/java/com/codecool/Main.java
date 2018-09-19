@@ -1,6 +1,7 @@
 package com.codecool;
 
-import com.codecool.model.assignment.AssignmentDAO;
+import com.codecool.DAO.MentorsDAO;
+import com.codecool.DAO.StudentsDAO;
 import com.codecool.view.*;
 
 public class Main {
@@ -13,7 +14,11 @@ public class Main {
 
         StudentsDAO std = new StudentsDAO();
         std.getListOfStudents();
-        System.out.println(std.getListOfStudents() );
+        System.out.println(std.toString( ) );
+
+        MentorsDAO mentdao = new MentorsDAO();
+        System.out.println(mentdao.toString( ) );
+
 
 
 

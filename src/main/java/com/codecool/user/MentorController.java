@@ -1,10 +1,5 @@
 package com.codecool.user;
 
-import com.codecool.StudentsDAO;
-import com.codecool.view.View;
-
-import java.util.List;
-
 public class MentorController extends UserController {
     @Override
     public void run() {
