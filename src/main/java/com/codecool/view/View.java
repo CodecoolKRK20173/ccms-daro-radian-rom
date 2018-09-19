@@ -7,6 +7,7 @@ public class View {
     private final int EXIT_INPUT = 0;
     private final String EXIT_OPTION_STRING = "Exit";
     private final String NOT_A_NUMBER_MESSAGE = "Please enter a number";
+    private final String WAIT_FOR_ACTION_MESSAGE = "Please press ENTER to continue...";
 
     private Scanner scanner;
 
@@ -14,11 +15,18 @@ public class View {
         scanner = new Scanner(System.in);
     }
 
+    public int getExitInput(){
+        return EXIT_INPUT;
+    }
+
     public void printOptions(String[] options){
         for (int i = 0; i < options.length; i++) {
-            println(String.format("%d. %s", i, options[i]));
+            println(String.format("%d. %s", i+1, options[i]));
         }
         println(String.format("%d. %s", EXIT_INPUT, EXIT_OPTION_STRING));
+    }
+    private void print(String message){
+        System.out.print(message);
     }
 
     public void println(String message){
@@ -35,8 +43,8 @@ public class View {
         }
     }
 
-    public String askForInput(String askMessage){
-        println(askMessage);
+    public String askForText(String askMessage){
+        print(askMessage);
         return scanner.next();
     }
 
@@ -55,5 +63,15 @@ public class View {
         } while (!isInputANumber);
 
         return input;
+    }
+
+    public void waitForAction(){
+        println(WAIT_FOR_ACTION_MESSAGE);
+        scanner.next();
+    }
+
+    public void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
