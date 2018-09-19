@@ -3,12 +3,12 @@ package com.codecool.user;
 public class Mentor extends User {
 
     private final int ID_TEXT_WIDTH = 4;
-    private final int USERNAME_TEXT_WIDTH = 5;
-    private final int PASSWORD_TEXT_WIDTH= 5;
-    private final int NAME_TEXT_WIDTH = 5;
-    private final int SURNAME_TEXT_WIDTH = 5;
-    private final int PHON_NUMBER_TEXT_WIDTH = 5;
-    private final int EMAIL_ADDRES_TEXT_WIDTH = 5;
+    private final int USERNAME_TEXT_WIDTH = 15;
+    private final int PASSWORD_TEXT_WIDTH= 15;
+    private final int NAME_TEXT_WIDTH = 15;
+    private final int SURNAME_TEXT_WIDTH = 15;
+    private final int PHON_NUMBER_TEXT_WIDTH = 15;
+    private final int EMAIL_ADDRES_TEXT_WIDTH = 15;
 
     private String id;
     private String userName;

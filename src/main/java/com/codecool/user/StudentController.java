@@ -1,37 +1,55 @@
 package com.codecool.user;
 
 import com.codecool.Assignment;
+import com.codecool.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentController extends UserController {
 
+    private boolean isRunning = true;
+    View view = new View();
     @Override
     public void run() {
+        System.out.println("Student");
+        System.out.println("   1. View my grades\n" +
+                "   2. Submit assigment.\n" +
+                "   3. Show list of assigments.\n" +
+                "   0. Exit\n");
 
+        while(isRunning){
+            handleMenu();
+        }
     }
 
+    public void handleMenu(){
+        int userChoice = view.askForNumber("Enter number :");
+        switch (userChoice) {
+            case (1):
+//                showListOfStudenst();
+                break;
+            case (2):
+//                addStudent();
+                break;
+            case (3):
+                showListOfAssigments();
+                break;
+            case (0):
+                isRunning = false;
+                break;
+        }
+    }
+
+
+        public void showListOfAssigments(){
+
+
+
+
+        }
 //    private List< Assignment > listOfTakenAssaingments = new ArrayList<>();
 //    private List< Assignment > listOfSubmitedAssaigments = new ArrayList<>();
-//
-//    public String[][] addStudent( Student student ){
-//        List<Student> studentsList = getListOfStudents();
-//        return exportListOfStudent(studentsList.add( student ));
-//    }
-//
-//    public String[][] removeStudent( String string ){
-//        List<Student> studentsList = getListOfStudents();
-//        studentsList.remove(string);
-//        String[][] listWithoutStudent = exportListOfStudent(studentsList);
-//        return listWithoutStudent;
-//    }
-//
-//    public String getStudentFromList( String string){
-//        List<Student> studentList = getListOfStudents();
-//        Student student = studentList.get(string);
-//        return    student.toString();
-//    }
 //
 //    public Assignment takeAssiagnment(Assignment assignment ){
 //        AssignmentDAO assigmentDAO = new AssignmentDAO();

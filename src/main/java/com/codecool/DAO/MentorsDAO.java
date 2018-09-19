@@ -1,16 +1,15 @@
 package com.codecool.DAO;
 
-
 import com.codecool.user.Mentor;
-import com.codecool.user.Student;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MentorsDAO {
 
+    private DataLoader daoloader = new DataLoader("MentorsCSV.CSV");
+
     public List<Mentor> getListOfMentors(){
-        DataLoader daoloader = new DataLoader("MentorsCSV.CSV");
         String[][] loader = daoloader.getFileContent();
         List<Mentor> mentorsList = new ArrayList<Mentor>();
 
@@ -27,8 +26,9 @@ public class MentorsDAO {
         return mentorsList;
     }
 
-    public String[][] exportListOfMentors(List<Mentor> mentorstList ){
-        String[][] listOfMentors = new String[5][5];
+    public void exportListOfMentors(List<Mentor> mentorstList ){
+        int listSize = mentorstList.size();
+        String[][] listOfMentors = new String[listSize][7];
         for ( int i =0; i < mentorstList.size(); i++ ){
             listOfMentors[i][0] = mentorstList.get(i).getId();
             listOfMentors[i][1] = mentorstList.get(i).getUserName();
@@ -38,7 +38,8 @@ public class MentorsDAO {
             listOfMentors[i][5] = mentorstList.get(i).getPhonNumber();
             listOfMentors[i][6] = mentorstList.get(i).getEmailAddres();
         }
-        return listOfMentors;
+        DataLoader daoloader = new DataLoader("MentorsCSV.CSV");
+        daoloader.saveContentToFile(listOfMentors);
     }
 
 
@@ -51,8 +52,18 @@ public class MentorsDAO {
         return sBuilder.toString();
     }
 
+    public void addMentor( ){
+        List<Mentor> mentorsList = getListOfMentors();
+        Mentor mentor = new Mentor( "id", "userName", "password",  "name",
+                "surname",  "phonNumber", "emailAdders" );
+        mentorsList.add( mentor );
+        exportListOfMentors( mentorsList );
+    }
 
-
-
+    public void removeMentor( int number ) {
+        List<Mentor> mentorsList = getListOfMentors();
+        mentorsList.remove( number);
+        exportListOfMentors( mentorsList );
+    }
 
 }

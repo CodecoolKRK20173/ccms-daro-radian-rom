@@ -2,6 +2,8 @@ package com.codecool;
 
 import com.codecool.DAO.MentorsDAO;
 import com.codecool.DAO.StudentsDAO;
+import com.codecool.user.MentorController;
+import com.codecool.user.StudentController;
 import com.codecool.view.*;
 
 public class Main {
@@ -10,18 +12,10 @@ public class Main {
 //        CCMS ccms = new CCMS(ccmsView);
 //        ccms.run();
 
-        View view = new View();
+        MentorController mentorController = new MentorController();
+        mentorController.run();
 
-        StudentsDAO std = new StudentsDAO();
-        std.getListOfStudents();
-        System.out.println(std.toString( ) );
-
-        MentorsDAO mentdao = new MentorsDAO();
-        System.out.println(mentdao.toString( ) );
-
-
-
-
-
+//        StudentController studentController = new StudentController();
+//        studentController.run();
     }
 }

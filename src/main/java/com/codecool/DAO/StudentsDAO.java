@@ -7,11 +7,10 @@ import java.util.List;
 
 public class StudentsDAO {
 
-    public StudentsDAO() {
-    }
+    private DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
 
     public List<Student> getListOfStudents(){
-        DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
+//        DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
         String[][] loader = daoloader.getFileContent();
 
         List<Student> studentsList = new ArrayList<Student>();
@@ -29,8 +28,9 @@ public class StudentsDAO {
         return studentsList;
     }
 
-    public String[][] exportListOfStudent(List<Student> studentList ){
-        String[][] listOfStudents = new String[5][5];
+    public void exportListOfStudent(List<Student> studentList ){
+        int listSize = studentList.size();
+        String[][] listOfStudents = new String[listSize][7];
         for ( int i =0; i < studentList.size(); i++ ){
             listOfStudents[i][0] = studentList.get(i).getId();
             listOfStudents[i][1] = studentList.get(i).getUserName();
@@ -40,7 +40,8 @@ public class StudentsDAO {
             listOfStudents[i][5] = studentList.get(i).getPhonNumber();
             listOfStudents[i][6] = studentList.get(i).getEmailAddres();
         }
-        return listOfStudents;
+        DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
+        daoloader.saveContentToFile(listOfStudents);
     }
 
     public String toString( ){
@@ -53,6 +54,24 @@ public class StudentsDAO {
         return sBuilder.toString();
     }
 
+    public void addStudent( ){
+        List<Student> studentsList = getListOfStudents();
+        Student student = new Student( "id", "userName", "password",  "name",
+                 "surname",  "phonNumber", "emailAdders" );
+        studentsList.add( student );
+        exportListOfStudent( studentsList );
+    }
 
+    public void removeStudent( int number ) {
+        List<Student> studentsList = getListOfStudents();
+        studentsList.remove( number);
+        exportListOfStudent( studentsList );
+    }
+
+    public Student getStudentFromList( int number ){
+        List<Student> studentList = getListOfStudents();
+        Student student = studentList.get(number);
+        return  student;
+    }
 
 }
