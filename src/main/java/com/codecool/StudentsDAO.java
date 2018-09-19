@@ -1,5 +1,9 @@
 package com.codecool;
 
+import com.codecool.model.daoloader.DAOLoader;
+import com.codecool.user.Student;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentsDAO {
@@ -8,9 +12,8 @@ public class StudentsDAO {
     }
 
     public List<Student> getListOfStudents(){
-
-        DAOLoader loader = new DAOLoader("StudentsCSV.CSV");
-        String[][] loader = loader.getFileContent();
+        DAOLoader daoloader = new DAOLoader("StudentsCSV.CSV");
+        String[][] loader = daoloader.getFileContent();
         List<Student> studentsList = new ArrayList<Student>();
         for ( int i =0; i < loader.length; i++){
             for( int j =0; j < loader[i].length; j++){
@@ -28,7 +31,6 @@ public class StudentsDAO {
     }
 
     public String[][] exportListOfStudent(List<Student> studentList ){
-
         String[][] listOfStudents = new String[5][5];
         for ( int i =0; i < studentList.size(); i++ ){
             listOfStudents[i][0] = studentList.get(i).getId();
@@ -42,16 +44,6 @@ public class StudentsDAO {
         return listOfStudents;
     }
 
-    public String[][] addStudent( Student student ){
-        List<Student> studentsList = getListOfStudents();
-        return exportListOfStudent(studentsList.add( student ));
-    }
-
-    public String[][] removeStudent( Student student ){
-        List<Student> studentsList = getListOfStudents();
-        return exportListOfStudent(studentsList.remove( student ));
-    }
-
     public String toString( ){
         List<Student>studentsList = getListOfStudents();
         StringBuilder sBuilder = new StringBuilder();
@@ -60,6 +52,7 @@ public class StudentsDAO {
         }
         return sBuilder.toString();
     }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.codecool.user;
 
 import com.codecool.Assignment;
+import com.codecool.model.assignment.AssignmentDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,6 @@ public class Student extends User {
         private String surname;
         private String phonNumber;
         private String emailAddres;
-
-        private List< Assignment > listOfTakenAssaingments = new ArrayList<>();
-        private List< Assignment > listOfSubmitedAssaigments = new ArrayList<>();
 
 
         public Student(String id, String userName,
@@ -64,7 +62,6 @@ public class Student extends User {
             this.emailAddres = emailAddres;
         }
 
-
         public String getId() {
             return id;
         }
@@ -94,29 +91,6 @@ public class Student extends User {
             return password;
         }
 
-
-        public Assignment takeAssiagnment( Assignment assignment ){
-            AssigmentDAO  assigmentDAO = new AssigmentDAO();
-            List< Assignment >  listofAssgiment = assignment.getListOfAssigment();
-            assignment = listofAssgiment.getAssaingment();
-
-            return assignment;
-        }
-
-        public void filltakenAssignment( Assignment assignment ){
-            listOfTakenAssaingments.add(assignment);
-        }
-
-
-        public List< Assignment > submitAssignment( Assignment assignment ){
-            SubmitetAssignemtDAO  submitetAssignemtDAO = new SubmitetAssignemtDAO();
-            List< Assignment >  listofAssgiment = submitetAssignemtDAO.getListOfAssigment();
-            return listofAssgiment.add(assignment);
-        }
-
-
-        public void viewMyGrades(){
-        }
 
         public String toString(){
             StringBuilder sBuilder = new StringBuilder();

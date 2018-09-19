@@ -1,5 +1,9 @@
 package com.codecool.user;
 
+import com.codecool.StudentsDAO;
+
+import java.util.List;
+
 public class Mentor extends User {
 
 
@@ -25,40 +29,6 @@ public class Mentor extends User {
         this.phonNumber = phonNumber;
         this.emailAddres = emailAddres;
     }
-
-
-    public String showListOfStudenst() {
-        return id;
-    }
-
-    public String addAssigment() {
-        return id;
-    }
-
-    public String gradeAssigment() {
-        return id;
-    }
-
-
-    public String checkAttendanceOfStudent() {
-        return id;
-    }
-
-
-    public String addStudent() {
-        return id;
-    }
-
-
-    public String removeStudent() {
-        return id;
-    }
-
-    public String showStudent() {
-        return id;
-    }
-
-
 
 
     public String getId() {
@@ -116,4 +86,15 @@ public class Mentor extends User {
     public void setEmailAddres(String emailAddres) {
         this.emailAddres = emailAddres;
     }
+
+
+    public String toString(){
+        StringBuilder sBuilder = new StringBuilder();
+        sBuilder.append(String.format("ID:%" + ID_TEXT_WIDTH + "s", id));
+        sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", userName));
+        return sBuilder.toString();
+
+    }
+
+
 }
