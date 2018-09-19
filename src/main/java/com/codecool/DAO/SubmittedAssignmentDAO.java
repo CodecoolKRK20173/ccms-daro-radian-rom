@@ -1,5 +1,6 @@
 package com.codecool.DAO;
 
+import com.codecool.model.assignment.Assignment;
 import com.codecool.model.assignment.SubmittedAssignment;
 
 import java.time.LocalDate;
@@ -69,6 +70,19 @@ public class SubmittedAssignmentDAO {
     public void addSubmittedAssignment(String assignmentId, String studentId) {
         List<SubmittedAssignment> submittedAssignments = loadSubmittedAssignments();
         submittedAssignments.add(new SubmittedAssignment(assignmentId, studentId, LocalDate.now().toString()));
+        saveSubmittedAssignments(submittedAssignments);
+    }
+
+    public void removeSubmittedAssignment(String assignmentId) {
+        List<SubmittedAssignment> submittedAssignments = loadSubmittedAssignments();
+        SubmittedAssignment submittedAssignmentToRemove = null;
+
+        for (SubmittedAssignment submittedAssignment: submittedAssignments) {
+            if (submittedAssignment.getAssignmentId().equals(assignmentId))
+                submittedAssignmentToRemove = submittedAssignment;
+        }
+
+        submittedAssignments.remove(submittedAssignmentToRemove);
         saveSubmittedAssignments(submittedAssignments);
     }
 }
