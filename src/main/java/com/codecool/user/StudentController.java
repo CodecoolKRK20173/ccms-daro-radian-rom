@@ -1,14 +1,20 @@
 package com.codecool.user;
 
-
+import java.time.LocalDate;
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
 import com.codecool.model.assignment.Assignment;
+import com.codecool.model.assignment.SubmittedAssignment;
 import com.codecool.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentController extends UserController {
 
+    String studentID = "s3";
     private boolean isRunning = true;
+
     View view = new View();
     @Override
     public void run() {
@@ -30,10 +36,10 @@ public class StudentController extends UserController {
 //                viewMyGrades();
                 break;
             case (2):
-//                SubmitAssignment();
+                submitAssignment();
                 break;
             case (3):
-//                showListOfAssigments();
+                showListOfAssigments();
                 break;
             case (0):
                 isRunning = false;
@@ -43,50 +49,33 @@ public class StudentController extends UserController {
 
 
     public void showListOfAssigments(){
-
+        AssignmentDAO assignmentDAO = new AssignmentDAO();
+        for ( Assignment assagnment : assignmentDAO.loadAssignments()){
+            System.out.println(assagnment);
+        }
     }
 
     public void viewMyGrades(){
         SubmittedAssignmentDAO submittedAssignmentDAO = new SubmittedAssignmentDAO();
+        List<SubmittedAssignment> listSubmittedAssignment = submittedAssignmentDAO.loadSubmittedAssignments();
 
     /*
     pobieram liste ocenionych zadan i wyciagam te które naleza do konkretnego studenta
      */
     }
 
-    public void submitAssignment(){
-        AssignmentDAO assignmentDAO = new AssignmentDAO();
-        Assignment assignment = assignmentDAO.getAssignmentById(String id);
-        SubmittedAssignmentDAO submittedAssignmentDAO = new SubmittedAssignmentDAO();
-        submittedAssignmentDAO.addSubmittedAssignment("assignmentId", "studentId");
-
     /*
     pobieram zadanie z listy zadan i przerzucam do listy submited assignmet z indexem konkretnego studenat
     */
+    public void submitAssignment(){
+        AssignmentDAO assignmentDAO = new AssignmentDAO();
+        Assignment assignment = assignmentDAO.getAssignmentById(view.askForText("Enter id of assignment : "));
+        view.waitAWhile();
+        System.out.println(assignment);
+        // jak pobrac id aktualnego studenta który aktualnie operuje ???????????????????????????
+        String studentId = studentID;
+//        SubmittedAssignmentDAO submittedAssignmentDAO = new SubmittedAssignmentDAO();
+//        submittedAssignmentDAO.addSubmittedAssignment( "a2",studentId);
 
     }
-
-
-
-
-//    public Assignment takeAssiagnment(Assignment assignment ){
-//        AssignmentDAO assigmentDAO = new AssignmentDAO();
-//        List< Assignment > listofAssgiment = assigmentDAO.loadAssignments();
-//        assignment = listofAssgiment.getAssignmentById();
-//
-//        return assignment;
-//    }
-//
-//    public void filltakenAssignment( Assignment assignment ){
-//        listOfTakenAssaingments.add(assignment);
-//    }
-//
-//    public List< Assignment > submitAssignment( Assignment assignment ){
-//        SubmitetAssignemtDAO  submitetAssignemtDAO = new SubmitetAssignemtDAO();
-//        List< Assignment >  listofAssgiment = submitetAssignemtDAO.getListOfAssigment();
-//        return listofAssgiment.add(assignment);
-//    }
-//
-
-
 }

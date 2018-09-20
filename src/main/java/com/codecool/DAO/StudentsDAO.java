@@ -7,12 +7,12 @@ import java.util.List;
 
 public class StudentsDAO {
 
-    private DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
+//    private DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
+//    private DataLoader daoloader;
 
     public List<Student> getListOfStudents(){
-//        DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
+        DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
         String[][] loader = daoloader.getFileContent();
-
         List<Student> studentsList = new ArrayList<Student>();
 
         for ( int i =0; i < loader.length; i++){
@@ -47,17 +47,20 @@ public class StudentsDAO {
     public String toString( ){
         List<Student>studentsList = getListOfStudents();
         StringBuilder sBuilder = new StringBuilder();
+        int index = 1;
         for( Student student  : studentsList ){
+            sBuilder.append( index+". " );
             sBuilder.append( student.toString());
             sBuilder.append( "\n");
+            index++;
         }
         return sBuilder.toString();
     }
 
-    public void addStudent( ){
+    public void addStudent( String id, String userName, String password,String  name,
+                            String  surname,  String phonNumber, String  emailAdders ){
+        Student student = new Student( id, userName, password, name, surname, phonNumber, emailAdders );
         List<Student> studentsList = getListOfStudents();
-        Student student = new Student( "id", "userName", "password",  "name",
-                 "surname",  "phonNumber", "emailAdders" );
         studentsList.add( student );
         exportListOfStudent( studentsList );
     }

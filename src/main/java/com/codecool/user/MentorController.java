@@ -7,16 +7,17 @@ import com.codecool.view.View;
 public class MentorController extends UserController {
 
     private boolean isRunning = true;
-    View view = new View();
+    private View view =new View();
 
     @Override
-    public void run() {
+    public void run( ) {
         System.out.println("Mentors");
-        System.out.println("   1. Show student\n" +
-                "   2. Add Student\n" +
-                "   3. Remove Student\n" +
-                "   4. Show info about Student\n"+
-                "   5. Add assignmetn\n"+
+        System.out.println("   1. Show students\n" +
+                "   2. Add Student.\n" +
+                "   3. Remove Student.\n" +
+                "   4. Show info about Student.\n"+
+                "   5. Show list of assignments.\n"+
+                "   6. Add assignmetn.\n"+
                 "   0. Exit\n");
         while(isRunning){
             handleMenu();
@@ -24,7 +25,7 @@ public class MentorController extends UserController {
     }
 
     public void handleMenu(){
-        int userChoice = view.askForNumber("Enter number :");
+        int userChoice = view.askForNumber(" Enter number :");
         switch (userChoice) {
             case (1):
                 showListOfStudenst();
@@ -33,14 +34,15 @@ public class MentorController extends UserController {
                 addStudent();
                 break;
             case (3):
-                int choice = view.askForNumber("Enter number :");
-                removeStudent(choice);
+                removeStudent();
                 break;
             case (4):
-//                int choice = view.askForNumber("Enter number :");
-//                removeStudent(choice);
+                showInfoAboutStudent();
                 break;
             case (5):
+                showListOfAssignment();
+                break;
+            case (6):
                 addNewAssignment();
                 break;
             case (0):
@@ -49,37 +51,68 @@ public class MentorController extends UserController {
         }
     }
 
-    public void removeStudent(int number){
-        StudentsDAO studentsDAO = new StudentsDAO();
-        studentsDAO.removeStudent(number);
-    }
-
-    public void addStudent(){
-        StudentsDAO studentsDAO = new StudentsDAO();
-        studentsDAO.addStudent( );
-    }
-
     public void showListOfStudenst() {
         StudentsDAO studentsDAO = new StudentsDAO();
         System.out.println(studentsDAO.toString());
     }
 
-    public void showInfoAboutStudent( int number ) {
+    public void addStudent( ){
+        view.waitAWhile();
+        String id = view.askForText("Enter id : ");
+        view.waitAWhile();
+        String userName = view.askForText("Enter userName : ");
+        view.waitAWhile();
+        String password = view.askForText("Enter password : ");
+        view.waitAWhile();
+        String name = view.askForText("Enter name : ");
+        view.waitAWhile();
+        String surname = view.askForText("Enter surname : ");
+        view.waitAWhile();
+        String phonNumber = view.askForText("Enter phonNumber : ");
+        view.waitAWhile();
+        String emailAdders = view.askForText("Enter emailAdders : ");
+
         StudentsDAO studentsDAO = new StudentsDAO();
-        Student student = studentsDAO.getStudentFromList( number );
+        studentsDAO.addStudent( id, userName, password, name, surname, phonNumber, emailAdders );
+    }
+
+    public void removeStudent(){
+        StudentsDAO studentsDAO = new StudentsDAO();
+        studentsDAO.removeStudent(view.askForNumber("Enter a number removed student:")-1);
+    }
+
+    public void showInfoAboutStudent( ) {
+        StudentsDAO studentsDAO = new StudentsDAO();
+        Student student = studentsDAO.getStudentFromList( view.askForNumber("Enter a student number to show :")-1);
         System.out.println(student.toString());
+        System.out.println(" Students assignments :  ");
 
         /*
         wyciagam z listy "submited zadan" zadania z indexem danego studenta
         i wybrane zadanie oceniam.
          */
+    }
+
+    public void showListOfAssignment(){
+        AssignmentDAO assignmentDAO = new AssignmentDAO();
+        System.out.println(assignmentDAO.loadAssignments());
 
     }
 
     public void addNewAssignment() {
-            AssignmentDAO assignmentDAO = new AssignmentDAO();
-            assignmentDAO.addAssignment("id", "name", "mentor", "description");
+        System.out.println( " Create new assignment : ");
+        view.waitAWhile();
+        String id = view.askForText("Enter id : ");
+        view.waitAWhile();
+        String name = view.askForText("Enter title : ");
+        view.waitAWhile();
+        String mentor = view.askForText("Enter mentor : ");
+        view.waitAWhile();
+        String description = view.askForText("Enter description : ");
+        AssignmentDAO assignmentDAO = new AssignmentDAO();
+        assignmentDAO.addAssignment(id,name, mentor,description);
     }
+
 
 //    public String gradeAssigment() {
 //        return id;
@@ -90,3 +123,4 @@ public class MentorController extends UserController {
 //    }
 
 }
+

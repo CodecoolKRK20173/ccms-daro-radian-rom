@@ -3,7 +3,7 @@ package com.codecool.user;
 
 public class Student extends User {
 
-        private final int ID_TEXT_WIDTH = 4;
+        private final int ID_TEXT_WIDTH = 2;
         private final int USERNAME_TEXT_WIDTH = 15;
         private final int PASSWORD_TEXT_WIDTH= 15;
         private final int NAME_TEXT_WIDTH = 15;
