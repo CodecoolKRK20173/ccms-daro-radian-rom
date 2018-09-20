@@ -6,7 +6,7 @@ import java.util.List;
 
 public class EmployeeView extends ConsoleView implements StudentPrintable {
     @Override
-    public void PrintStudent(List<Student> studentList) {
+    public void printStudent(List<Student> studentList) {
         int counter = 1;
         for (Student student: studentList) {
             System.out.println(counter + " "
