@@ -22,6 +22,23 @@ public class AccountsDAO {
         dataLoader = new DataLoader(ACCOUNTS_FILE_NAME);
     }
 
+    public void makeAccount(String id, String login, String password, String accessLevel){
+        loadAllAccounts();
+        String[][] newAccounts = new String[accounts.length+1][4];
+        for (int i=0; i<accounts.length; i++){
+            newAccounts[i][LOGIN_COLUMN] = accounts[i][LOGIN_COLUMN];
+            newAccounts[i][PASSWORD_COLUMN] = accounts[i][PASSWORD_COLUMN];
+            newAccounts[i][USER_ID_COLUMN] = accounts[i][USER_ID_COLUMN];
+            newAccounts[i][ACCESS_LEVEL_COLUMN] = accounts[i][ACCESS_LEVEL_COLUMN];
+        }
+        newAccounts[newAccounts.length-1][LOGIN_COLUMN] = login;
+        newAccounts[newAccounts.length-1][PASSWORD_COLUMN] = password;
+        newAccounts[newAccounts.length-1][USER_ID_COLUMN] = id;
+        newAccounts[newAccounts.length-1][ACCESS_LEVEL_COLUMN] = accessLevel;
+
+        dataLoader.saveContentToFile(newAccounts);
+    }
+
     public Account getAccount(String login){
         loadAllAccounts();
 

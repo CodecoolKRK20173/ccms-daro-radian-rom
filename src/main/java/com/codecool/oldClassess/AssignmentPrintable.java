@@ -1,4 +1,4 @@
-package com.codecool.view.oldClassess;
+package com.codecool.oldClassess;
 
 public interface AssignmentPrintable {
 }

@@ -36,6 +36,7 @@ public class CCMS {
             if (loginController.isUserLogged()){
                 view.clearScreen();
                 userController.run();
+                loginController.logOut();
             } else {
                 handleMenu();
             }
