@@ -81,9 +81,7 @@ public class MentorController extends UserController {
     }
 
     public void addStudent( ){
-        view.waitAWhile();
         String id = view.askForText("Enter id : ");
-        view.waitAWhile();
         String userName = view.askForText("Enter userName : ");
         String password = view.askForText("Enter password : ");
         String name = view.askForText("Enter name : ");
@@ -99,18 +97,29 @@ public class MentorController extends UserController {
     }
 
     public void showInfoAboutStudent( ) {
-
         Student student = studentsDAO.getStudentFromList( view.askForNumber("Enter a student number to show :")-1);
         String studentID = student.getId();
         System.out.println(student.toString());
         System.out.println(" Students assignments :  ");
-//        List<SubmittedAssignment>  listOfAssignmets = submittedAssignmentDAO.loadSubmittedAssignments();
-//        for ( SubmittedAssignment sAssignmet : listOfAssignmets){
-//            if (sAssignmet.getStudentId().equals(studentID )){
-//                System.out.println( sAssignmet );
-//            }
-//        }
+        List<SubmittedAssignment>  listOfAssignmets = submittedAssignmentDAO.loadSubmittedAssignments();
+        int index = 1;
+        for ( SubmittedAssignment sAssignmet : listOfAssignmets){
+            if (sAssignmet.getStudentId().equals(studentID )){
+                System.out.println( index +" "+ sAssignmet.getAssignmentId()
+                        + " "+ sAssignmet.getIsGraded());
+                index++;
+            }
+        }
+
+        String idAssignment = view.askForText("Enter a ID of assignmet for grade : ");
+        for ( SubmittedAssignment  assignment : listOfAssignmets){
+            if (assignment.getAssignmentId().equals(idAssignment) ){
+                assignment.setGrade(view.askForNumber("Enter a grade :"));
+                assignment.setGraded(true);
+            }
+        }
     }
+
 
     public void showListOfAssignment(){
             aview.printListOfAssignmets(assignmentDAO.loadAssignments());

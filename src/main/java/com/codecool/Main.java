@@ -12,10 +12,10 @@ public class Main {
 //        CCMS ccms = new CCMS(ccmsView);
 //        ccms.run();
 
-//        MentorController mentorController = new MentorController();
-//        mentorController.run();
+        MentorController mentorController = new MentorController();
+        mentorController.run();
 
-        StudentController studentController = new StudentController();
-        studentController.run();
+//        StudentController studentController = new StudentController();
+//        studentController.run();
     }
 }

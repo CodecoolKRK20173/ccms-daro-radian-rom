@@ -27,7 +27,6 @@ public class AssignmentDAO {
     public  Assignment getAssignmentById(String id) {
         List<Assignment> assignments = loadAssignments();
         Assignment assignment = null;
-
         for (Assignment a: assignments) {
             if (a.getId().equals(id)) {
                 assignment = a;

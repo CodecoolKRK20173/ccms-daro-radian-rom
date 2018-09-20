@@ -33,23 +33,23 @@ public class SubmittedAssignmentDAO {
                                                                               row[SUBMITTED_DATE_INDEX]);
             submittedAssignment.setMentorGraded(row[MENTOR_INDEX]);
             submittedAssignment.setGrade(Integer.valueOf(row[GRADE_INDEX]));
-            submittedAssignment.setGradedDate(turnStringToDate(row[GRADED_DATE_INDEX]));
+            submittedAssignment.setGradedDate(row[GRADED_DATE_INDEX]);
             submittedAssignment.setGraded(Boolean.valueOf(row[IS_GRADED_INDEX]));
             submittedAssignments.add(submittedAssignment);
         }
         return submittedAssignments;
     }
-
-    private LocalDate turnStringToDate(String dateString) {
-        String[] dateStrings = dateString.split("-");
-        int yearIndex = 0;
-        int monthIndex = 1;
-        int dayIndex = 2;
-        int year = Integer.valueOf(dateStrings[yearIndex]);
-        int month = Integer.valueOf(dateStrings[monthIndex]);
-        int day = Integer.valueOf(dateStrings[dayIndex]);
-        return LocalDate.of(year, month, day);
-    }
+//
+//    private LocalDate turnStringToDate(String dateString) {
+//        String[] dateStrings = dateString.split("-");
+//        int yearIndex = 0;
+//        int monthIndex = 1;
+//        int dayIndex = 2;
+//        int year = Integer.valueOf(dateStrings[yearIndex]);
+//        int month = Integer.valueOf(dateStrings[monthIndex]);
+//        int day = Integer.valueOf(dateStrings[dayIndex]);
+//        return LocalDate.of(year, month, day);
+//    }
 
     private void saveSubmittedAssignments(List<SubmittedAssignment> submittedAssignments) {
         List<String[]> submittedAssignmentsDataToSave = new ArrayList<>();

@@ -63,8 +63,8 @@ public class SubmittedAssignment {
         this.grade = grade;
     }
 
-    public void setGradedDate(LocalDate gradedDate) {
-        this.gradedDate = gradedDate.toString();
+    public void setGradedDate(String gradedDate) {
+        this.gradedDate = gradedDate;
     }
 
     public void setGraded(boolean graded) {

@@ -16,7 +16,7 @@ import java.util.List;
 public class StudentController extends UserController {
 
     private AssignmentView aview;
-    private String studentID = "s3";
+    private String studentID;
     private boolean isRunning = true;
     private SubmittedAssignmentDAO submittedAssignmentDAO;
     private StudentView view;
@@ -29,6 +29,7 @@ public class StudentController extends UserController {
         submittedAssignmentDAO = new SubmittedAssignmentDAO();
         view = new StudentView();
         aview = new AssignmentView();
+        studentID = "stud3";
     }
 
     @Override
@@ -48,7 +49,7 @@ public class StudentController extends UserController {
         int userChoice = view.askForNumber("Enter number :");
         switch (userChoice) {
             case (1):
-//                viewMyGrades();
+                viewMyGrades();
                 break;
             case (2):
                 submitAssignment();
@@ -62,32 +63,29 @@ public class StudentController extends UserController {
         }
     }
 
-
     public void showListOfAssigments(){
-            aview.printListOfAssignmets(assignmentDAO.loadAssignments());
+        aview.printListOfAssignmets(assignmentDAO.loadAssignments());
     }
-
 
     public void viewMyGrades(){
+        String studentId = studentID;
         List<SubmittedAssignment> listSubmittedAssignment = submittedAssignmentDAO.loadSubmittedAssignments();
-
-    /*
-    pobieram liste ocenionych zadan i wyciagam te które naleza do konkretnego studenta
-     */
+        for ( SubmittedAssignment  assignment : listSubmittedAssignment ){
+            if(  assignment.getStudentId().equals(studentId)   ){
+                System.out.println( assignment.getAssignmentId()+
+                        assignment.getGrade()+
+                        assignment.getMentorGraded());
+            }
+        }
     }
 
-    /*
-    pobieram zadanie z listy zadan i przerzucam do listy submited assignmet z indexem konkretnego studenat
-    */
     public void submitAssignment(){
-        AssignmentDAO assignmentDAO = new AssignmentDAO();
-        Assignment assignment = assignmentDAO.getAssignmentById(view.askForText("Enter id of assignment : "));
-        view.waitAWhile();
+        List<Assignment> assignments = assignmentDAO.loadAssignments();
+        Assignment assignment = assignments.get(view.askForNumber("Enter index of assignment."));
+        String idAssignment  = assignment.getId();
         System.out.println(assignment);
-        // jak pobrac id aktualnego studenta który aktualnie operuje ???????????????????????????
         String studentId = studentID;
-        SubmittedAssignmentDAO submittedAssignmentDAO = new SubmittedAssignmentDAO();
-        submittedAssignmentDAO.addSubmittedAssignment( "a2",studentId);
+        submittedAssignmentDAO.addSubmittedAssignment( idAssignment,studentId);
 
     }
 }
