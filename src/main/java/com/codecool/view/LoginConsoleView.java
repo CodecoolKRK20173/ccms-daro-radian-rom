@@ -9,7 +9,7 @@ public class LoginConsoleView extends ConsoleView implements LoginView {
 //    public String askForPassword(String askMessage) {
 //        Console console = System.console();
 //        if (console == null){
-//            throw new UnsupportedOperationException();
+//            throw new UnsupportedOperationException("No console found");
 //        }
 //
 //        String pass = console.readPassword(askMessage).toString();

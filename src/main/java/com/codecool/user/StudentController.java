@@ -1,13 +1,12 @@
 package com.codecool.user;
 
-import java.time.LocalDate;
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
 import com.codecool.model.assignment.Assignment;
 import com.codecool.model.assignment.SubmittedAssignment;
+import com.codecool.view.ConsoleView;
 import com.codecool.view.View;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StudentController extends UserController {
@@ -15,7 +14,7 @@ public class StudentController extends UserController {
     String studentID = "s3";
     private boolean isRunning = true;
 
-    View view = new View();
+    View view = new ConsoleView();
     @Override
     public void run() {
         System.out.println("Student");

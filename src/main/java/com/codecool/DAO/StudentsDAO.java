@@ -37,7 +37,7 @@ public class StudentsDAO {
             listOfStudents[i][2] = studentList.get(i).getPassword();
             listOfStudents[i][3] = studentList.get(i).getName();
             listOfStudents[i][4] = studentList.get(i).getSurname();
-            listOfStudents[i][5] = studentList.get(i).getPhonNumber();
+            listOfStudents[i][5] = studentList.get(i).getPhoneNumber();
             listOfStudents[i][6] = studentList.get(i).getEmailAddres();
         }
         DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
