@@ -1,6 +1,7 @@
 package com.codecool.login;
 
 import com.codecool.customexceptions.NoControllerForUserException;
+import com.codecool.user.User;
 import com.codecool.user.*;
 
 public class UserSwitch {
