@@ -1,5 +1,6 @@
 package com.codecool.user;
 
+
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
@@ -7,6 +8,7 @@ import com.codecool.login.Account;
 import com.codecool.model.assignment.Assignment;
 import com.codecool.model.assignment.SubmittedAssignment;
 import com.codecool.view.StudentView;
+
 
 import java.util.List;
 
@@ -25,7 +27,8 @@ public class StudentController extends UserController {
         assignmentDAO = new AssignmentDAO();
         submittedAssignmentDAO = new SubmittedAssignmentDAO();
         this.view = view;
-        studentID = "stud3";
+        studentID = account.getUserId();
+
     }
 
     @Override
@@ -82,6 +85,5 @@ public class StudentController extends UserController {
         System.out.println(assignment);
         String studentId = studentID;
         submittedAssignmentDAO.addSubmittedAssignment( idAssignment,studentId);
-
     }
 }

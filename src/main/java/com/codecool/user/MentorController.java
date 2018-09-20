@@ -12,17 +12,20 @@ import java.util.List;
 public class MentorController extends UserController {
 
     private boolean isRunning = true;
-    StudentsDAO studentsDAO;
-    AssignmentDAO assignmentDAO;
-    SubmittedAssignmentDAO submittedAssignmentDAO;
-    MentorView view;
+//    private AssignmentView aview;
+    private StudentsDAO studentsDAO;
+    private AssignmentDAO assignmentDAO;
+    private SubmittedAssignmentDAO submittedAssignmentDAO;
+    private Account account;
+    private MentorView view;
 
-    public MentorController(Account account, MentorView view) {
+    public MentorController( Account account,MentorView view ) {
         super(account);
         studentsDAO = new StudentsDAO();
         assignmentDAO = new AssignmentDAO();
         submittedAssignmentDAO = new SubmittedAssignmentDAO();
         this.view = view;
+        this.account = account;
     }
 
     @Override
@@ -130,14 +133,4 @@ public class MentorController extends UserController {
         assignmentDAO.addAssignment(id,name, mentor,description);
     }
 
-
-//    public String gradeAssigment() {
-//        return id;
-//    }
-
-//    public String checkAttendanceOfStudent() {
-//        return id;
-//    }
-
-//    }
 }
