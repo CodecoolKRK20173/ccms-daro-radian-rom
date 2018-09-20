@@ -22,19 +22,19 @@ public class EmployeeController extends UserController {
         boolean isRunning = true;
 
         while (isRunning) {
-            employeeView.clearScreen();
-            employeeView.printOptions(OPTIONS);
-            int choice = employeeView.askForNumber("Option");
+            view.clearScreen();
+            view.printOptions(OPTIONS);
+            int choice = view.askForNumber("Option");
 
             switch (choice) {
                 case 1:
-                    employeeView.printStudent(studentsDAO.getListOfStudents());
+                    view.printStudents(studentsDAO.getListOfStudents());
                 case 0:
                     isRunning = false;
                 default:
-                    employeeView.printError("Unknown choice!");
+                    view.printError("Unknown choice!");
             }
-            employeeView.askForText("PRESS ENTER TO CONTINUE...");
+            view.askForText("PRESS ENTER TO CONTINUE...");
         }
     }
 }
