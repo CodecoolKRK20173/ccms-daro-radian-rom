@@ -5,13 +5,21 @@ import com.codecool.user.Student;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class StudentsDAO {
+
+    DataLoader daoloader;
+
+    public StudentsDAO() {
+        daoloader = new DataLoader("StudentsCSV.CSV");
+    }
 
 //    private DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
 //    private DataLoader daoloader;
 
     public List<Student> getListOfStudents(){
-        DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
+//        DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
         String[][] loader = daoloader.getFileContent();
         List<Student> studentsList = new ArrayList<Student>();
 
@@ -40,7 +48,7 @@ public class StudentsDAO {
             listOfStudents[i][5] = studentList.get(i).getPhonNumber();
             listOfStudents[i][6] = studentList.get(i).getEmailAddres();
         }
-        DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
+//        DataLoader daoloader = new DataLoader("StudentsCSV.CSV");
         daoloader.saveContentToFile(listOfStudents);
     }
 

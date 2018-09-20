@@ -96,5 +96,6 @@ public class Student extends User {
             sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", emailAddres));
             return sBuilder.toString();
         }
+
 }
 

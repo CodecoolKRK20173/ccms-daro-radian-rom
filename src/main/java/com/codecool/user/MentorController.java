@@ -2,12 +2,31 @@ package com.codecool.user;
 
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
+import com.codecool.DAO.SubmittedAssignmentDAO;
+import com.codecool.model.assignment.Assignment;
+import com.codecool.model.assignment.SubmittedAssignment;
+import com.codecool.view.AssignmentView;
+import com.codecool.view.StudentView;
 import com.codecool.view.View;
+
+import java.util.List;
 
 public class MentorController extends UserController {
 
     private boolean isRunning = true;
-    private View view =new View();
+    private StudentView view;
+    private AssignmentView aview;
+    StudentsDAO studentsDAO;
+    AssignmentDAO assignmentDAO;
+    SubmittedAssignmentDAO submittedAssignmentDAO;
+
+    public MentorController() {
+        studentsDAO = new StudentsDAO();
+        assignmentDAO = new AssignmentDAO();
+        submittedAssignmentDAO = new SubmittedAssignmentDAO();
+        view = new StudentView();
+        aview = new AssignmentView();
+    }
 
     @Override
     public void run( ) {
@@ -17,7 +36,7 @@ public class MentorController extends UserController {
                 "   3. Remove Student.\n" +
                 "   4. Show info about Student.\n"+
                 "   5. Show list of assignments.\n"+
-                "   6. Add assignmetn.\n"+
+                "   6. Add new assignment to list.\n"+
                 "   0. Exit\n");
         while(isRunning){
             handleMenu();
@@ -29,21 +48,27 @@ public class MentorController extends UserController {
         switch (userChoice) {
             case (1):
                 showListOfStudenst();
+                view.clearScreen();
                 break;
             case (2):
                 addStudent();
+                view.clearScreen();
                 break;
             case (3):
                 removeStudent();
+                view.clearScreen();
                 break;
             case (4):
                 showInfoAboutStudent();
+                view.clearScreen();
                 break;
             case (5):
                 showListOfAssignment();
+                view.clearScreen();
                 break;
             case (6):
                 addNewAssignment();
+                view.clearScreen();
                 break;
             case (0):
                 isRunning = false;
@@ -52,8 +77,7 @@ public class MentorController extends UserController {
     }
 
     public void showListOfStudenst() {
-        StudentsDAO studentsDAO = new StudentsDAO();
-        System.out.println(studentsDAO.toString());
+        view.printListOfStudenst(studentsDAO.getListOfStudents());
     }
 
     public void addStudent( ){
@@ -61,55 +85,44 @@ public class MentorController extends UserController {
         String id = view.askForText("Enter id : ");
         view.waitAWhile();
         String userName = view.askForText("Enter userName : ");
-        view.waitAWhile();
         String password = view.askForText("Enter password : ");
-        view.waitAWhile();
         String name = view.askForText("Enter name : ");
-        view.waitAWhile();
         String surname = view.askForText("Enter surname : ");
-        view.waitAWhile();
         String phonNumber = view.askForText("Enter phonNumber : ");
-        view.waitAWhile();
         String emailAdders = view.askForText("Enter emailAdders : ");
-
         StudentsDAO studentsDAO = new StudentsDAO();
         studentsDAO.addStudent( id, userName, password, name, surname, phonNumber, emailAdders );
     }
 
     public void removeStudent(){
-        StudentsDAO studentsDAO = new StudentsDAO();
         studentsDAO.removeStudent(view.askForNumber("Enter a number removed student:")-1);
     }
 
     public void showInfoAboutStudent( ) {
-        StudentsDAO studentsDAO = new StudentsDAO();
+
         Student student = studentsDAO.getStudentFromList( view.askForNumber("Enter a student number to show :")-1);
+        String studentID = student.getId();
         System.out.println(student.toString());
         System.out.println(" Students assignments :  ");
-
-        /*
-        wyciagam z listy "submited zadan" zadania z indexem danego studenta
-        i wybrane zadanie oceniam.
-         */
+//        List<SubmittedAssignment>  listOfAssignmets = submittedAssignmentDAO.loadSubmittedAssignments();
+//        for ( SubmittedAssignment sAssignmet : listOfAssignmets){
+//            if (sAssignmet.getStudentId().equals(studentID )){
+//                System.out.println( sAssignmet );
+//            }
+//        }
     }
 
     public void showListOfAssignment(){
-        AssignmentDAO assignmentDAO = new AssignmentDAO();
-        System.out.println(assignmentDAO.loadAssignments());
-
+            aview.printListOfAssignmets(assignmentDAO.loadAssignments());
     }
 
     public void addNewAssignment() {
         System.out.println( " Create new assignment : ");
         view.waitAWhile();
         String id = view.askForText("Enter id : ");
-        view.waitAWhile();
         String name = view.askForText("Enter title : ");
-        view.waitAWhile();
         String mentor = view.askForText("Enter mentor : ");
-        view.waitAWhile();
         String description = view.askForText("Enter description : ");
-        AssignmentDAO assignmentDAO = new AssignmentDAO();
         assignmentDAO.addAssignment(id,name, mentor,description);
     }
 
@@ -117,10 +130,9 @@ public class MentorController extends UserController {
 //    public String gradeAssigment() {
 //        return id;
 //    }
-//
+
 //    public String checkAttendanceOfStudent() {
 //        return id;
+
 //    }
-
 }
-

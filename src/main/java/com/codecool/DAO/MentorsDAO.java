@@ -7,7 +7,11 @@ import java.util.List;
 
 public class MentorsDAO {
 
-    private DataLoader daoloader = new DataLoader("MentorsCSV.CSV");
+    private DataLoader daoloader;
+
+    public MentorsDAO(DataLoader daoloader) {
+        this.daoloader = daoloader;
+    }
 
     public List<Mentor> getListOfMentors(){
         String[][] loader = daoloader.getFileContent();
@@ -38,7 +42,7 @@ public class MentorsDAO {
             listOfMentors[i][5] = mentorstList.get(i).getPhonNumber();
             listOfMentors[i][6] = mentorstList.get(i).getEmailAddres();
         }
-        DataLoader daoloader = new DataLoader("MentorsCSV.CSV");
+//        DataLoader daoloader = new DataLoader("MentorsCSV.CSV");
         daoloader.saveContentToFile(listOfMentors);
     }
 

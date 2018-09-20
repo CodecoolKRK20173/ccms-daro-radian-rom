@@ -2,9 +2,12 @@ package com.codecool.user;
 
 import java.time.LocalDate;
 import com.codecool.DAO.AssignmentDAO;
+import com.codecool.DAO.StudentsDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
 import com.codecool.model.assignment.Assignment;
 import com.codecool.model.assignment.SubmittedAssignment;
+import com.codecool.view.AssignmentView;
+import com.codecool.view.StudentView;
 import com.codecool.view.View;
 
 import java.util.ArrayList;
@@ -12,10 +15,22 @@ import java.util.List;
 
 public class StudentController extends UserController {
 
-    String studentID = "s3";
+    private AssignmentView aview;
+    private String studentID = "s3";
     private boolean isRunning = true;
+    private SubmittedAssignmentDAO submittedAssignmentDAO;
+    private StudentView view;
+    private StudentsDAO studentsDAO;
+    private AssignmentDAO assignmentDAO;
 
-    View view = new View();
+    public StudentController() {
+        studentsDAO = new StudentsDAO();
+        assignmentDAO = new AssignmentDAO();
+        submittedAssignmentDAO = new SubmittedAssignmentDAO();
+        view = new StudentView();
+        aview = new AssignmentView();
+    }
+
     @Override
     public void run() {
         System.out.println("Student");
@@ -49,14 +64,11 @@ public class StudentController extends UserController {
 
 
     public void showListOfAssigments(){
-        AssignmentDAO assignmentDAO = new AssignmentDAO();
-        for ( Assignment assagnment : assignmentDAO.loadAssignments()){
-            System.out.println(assagnment);
-        }
+            aview.printListOfAssignmets(assignmentDAO.loadAssignments());
     }
 
+
     public void viewMyGrades(){
-        SubmittedAssignmentDAO submittedAssignmentDAO = new SubmittedAssignmentDAO();
         List<SubmittedAssignment> listSubmittedAssignment = submittedAssignmentDAO.loadSubmittedAssignments();
 
     /*
@@ -74,8 +86,8 @@ public class StudentController extends UserController {
         System.out.println(assignment);
         // jak pobrac id aktualnego studenta który aktualnie operuje ???????????????????????????
         String studentId = studentID;
-//        SubmittedAssignmentDAO submittedAssignmentDAO = new SubmittedAssignmentDAO();
-//        submittedAssignmentDAO.addSubmittedAssignment( "a2",studentId);
+        SubmittedAssignmentDAO submittedAssignmentDAO = new SubmittedAssignmentDAO();
+        submittedAssignmentDAO.addSubmittedAssignment( "a2",studentId);
 
     }
 }
