@@ -1,4 +1,6 @@
-package com.codecool.view;
+package com.codecool.view.consoleImplementations;
+
+import com.codecool.view.LoginView;
 
 public class LoginConsoleView extends ConsoleView implements LoginView {
     @Override
@@ -12,8 +14,6 @@ public class LoginConsoleView extends ConsoleView implements LoginView {
 //            throw new UnsupportedOperationException("No console found");
 //        }
 //
-//        String pass = console.readPassword(askMessage).toString();
-//        println(pass);
-//        return pass;
+//        return console.readPassword(askMessage).toString();
 //    }
 }

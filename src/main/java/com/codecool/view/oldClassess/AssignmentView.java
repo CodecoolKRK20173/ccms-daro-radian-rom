@@ -1,7 +1,7 @@
-package com.codecool.view;
+package com.codecool.view.oldClassess;
 
 import com.codecool.model.assignment.Assignment;
-import com.codecool.user.Student;
+import com.codecool.view.consoleImplementations.ConsoleView;
 
 import java.util.List;
 
