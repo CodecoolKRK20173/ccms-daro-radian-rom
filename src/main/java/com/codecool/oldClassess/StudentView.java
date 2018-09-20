@@ -1,4 +1,4 @@
-package com.codecool.view.oldClassess;
+package com.codecool.oldClassess;
 
 import com.codecool.user.Student;
 import com.codecool.view.consoleImplementations.ConsoleView;

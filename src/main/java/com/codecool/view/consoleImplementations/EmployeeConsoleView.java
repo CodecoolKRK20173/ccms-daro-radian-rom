@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EmployeeConsoleView extends UserConsoleView implements EmployeeView {
     @Override
-    public void PrintStudent(List<Student> studentList) {
+    public void printStudents(List<Student> studentList) {
 
     }
 }
