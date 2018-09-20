@@ -3,22 +3,22 @@ package com.codecool.user;
 
 public abstract class  User {
 
-    private final int ID_TEXT_WIDTH = 2;
-    private final int USERNAME_TEXT_WIDTH = 15;
-    private final int PASSWORD_TEXT_WIDTH= 15;
-    private final int NAME_TEXT_WIDTH = 15;
-    private final int SURNAME_TEXT_WIDTH = 15;
-    private final int PHON_NUMBER_TEXT_WIDTH = 15;
-    private final int EMAIL_ADDRES_TEXT_WIDTH = 15;
+    final int ID_TEXT_WIDTH = 2;
+    final int USERNAME_TEXT_WIDTH = 15;
+    final int PASSWORD_TEXT_WIDTH= 15;
+    final int NAME_TEXT_WIDTH = 15;
+    final int SURNAME_TEXT_WIDTH = 15;
+    final int PHON_NUMBER_TEXT_WIDTH = 15;
+    final int EMAIL_ADDRES_TEXT_WIDTH = 15;
 
-    private String id;
-    private String userName;
-    private String password;
-    private String name;
-    private String surname;
-    private String phonNumber;
-    private String emailAddres;
-    private String type;
+    String id;
+    String userName;
+    String password;
+    String name;
+    String surname;
+    String phoneNumber;
+    String emailAddres;
+    String type;
 
 
     public User(String id, String userName,
@@ -30,7 +30,7 @@ public abstract class  User {
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.phonNumber = phonNumber;
+        this.phoneNumber = phonNumber;
         this.emailAddres = emailAdders;
     }
 
@@ -51,7 +51,7 @@ public abstract class  User {
     }
 
     public void setPhonNumber(String phonNumber) {
-        this.phonNumber = phonNumber;
+        this.phoneNumber = phonNumber;
     }
 
     public void setEmailAddres(String emailAddres) {
@@ -66,8 +66,8 @@ public abstract class  User {
         return userName;
     }
 
-    public String getPhonNumber() {
-        return phonNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getEmailAddres() {
@@ -97,7 +97,7 @@ public abstract class  User {
         sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", password));
         sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", name));
         sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", surname));
-        sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", phonNumber));
+        sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", phoneNumber));
         sBuilder.append(String.format(" | %-" + USERNAME_TEXT_WIDTH + "s", emailAddres));
         return sBuilder.toString();
     }
