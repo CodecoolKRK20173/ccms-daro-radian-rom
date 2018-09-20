@@ -36,7 +36,7 @@ public class MentorController extends UserController {
                 "   3. Remove Student.\n" +
                 "   4. Show info about Student.\n"+
                 "   5. Show list of assignments.\n"+
-                "   6. Add new assignment to list.\n"+
+                "   6. Add assignmetn.\n"+
                 "   0. Exit\n");
         while(isRunning){
             handleMenu();
@@ -48,7 +48,6 @@ public class MentorController extends UserController {
         switch (userChoice) {
             case (1):
                 showListOfStudenst();
-                view.clearScreen();
                 break;
             case (2):
                 addStudent();
@@ -120,7 +119,6 @@ public class MentorController extends UserController {
         }
     }
 
-
     public void showListOfAssignment(){
             aview.printListOfAssignmets(assignmentDAO.loadAssignments());
     }
@@ -142,6 +140,7 @@ public class MentorController extends UserController {
 
 //    public String checkAttendanceOfStudent() {
 //        return id;
+//    }
 
 //    }
 }
