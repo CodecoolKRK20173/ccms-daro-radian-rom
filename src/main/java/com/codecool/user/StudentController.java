@@ -1,16 +1,13 @@
 package com.codecool.user;
 
-import java.time.LocalDate;
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
 import com.codecool.model.assignment.Assignment;
 import com.codecool.model.assignment.SubmittedAssignment;
-import com.codecool.view.AssignmentView;
-import com.codecool.view.StudentView;
-import com.codecool.view.View;
+import com.codecool.view.oldClassess.AssignmentView;
+import com.codecool.view.oldClassess.StudentView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class StudentController extends UserController {

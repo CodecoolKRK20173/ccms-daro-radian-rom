@@ -25,6 +25,6 @@ public class ManagerController extends UserController {
     }
 
     private void handleMenu(){
-        view.println();
+        view.println("");
     }
 }

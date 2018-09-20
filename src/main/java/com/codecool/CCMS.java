@@ -7,7 +7,7 @@ import com.codecool.login.LoginController;
 import com.codecool.login.UserSwitch;
 import com.codecool.user.UserController;
 import com.codecool.view.CCMSView;
-import com.codecool.view.LoginConsoleView;
+import com.codecool.view.consoleImplementations.LoginConsoleView;
 
 public class CCMS {
     private LoginController loginController;

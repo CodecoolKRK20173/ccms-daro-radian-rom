@@ -1,4 +1,6 @@
-package com.codecool.view;
+package com.codecool.view.consoleImplementations;
+
+import com.codecool.view.LoginView;
 
 public class LoginConsoleView extends ConsoleView implements LoginView {
     @Override

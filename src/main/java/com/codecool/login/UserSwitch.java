@@ -2,7 +2,7 @@ package com.codecool.login;
 
 import com.codecool.customexceptions.NoControllerForUserException;
 import com.codecool.user.*;
-import com.codecool.view.ConsoleView;
+import com.codecool.view.consoleImplementations.ConsoleView;
 
 public class UserSwitch {
     private final String UNKNOWN_USER_ERROR =

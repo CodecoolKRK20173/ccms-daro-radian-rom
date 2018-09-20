@@ -1,4 +1,6 @@
-package com.codecool.view;
+package com.codecool.view.consoleImplementations;
+
+import com.codecool.view.View;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -10,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ConsoleView implements View{
+public class ConsoleView implements View {
     private final int EXIT_INPUT = 0;
     private final int MENU_BOTTOM_MARGIN = 2;
     private final String EXIT_OPTION_STRING = "Exit";

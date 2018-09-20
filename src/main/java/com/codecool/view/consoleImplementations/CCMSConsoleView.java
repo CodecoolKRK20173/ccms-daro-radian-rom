@@ -1,4 +1,6 @@
-package com.codecool.view;
+package com.codecool.view.consoleImplementations;
+
+import com.codecool.view.CCMSView;
 
 import java.util.List;
 
