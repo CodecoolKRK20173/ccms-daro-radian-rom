@@ -10,12 +10,13 @@ public class AssignmentDAO {
     final private int NAME_INDEX = 1;
     final private int MENTOR_INDEX = 2;
     final private int DESCRIPTION_INDEX = 3;
-    final private String sourceFileName = "assignments.csv";
+    final private String SOURCE_FILE_NAME = "assignments.csv";
 
     private DataLoader dataLoader;
+    
 
     public AssignmentDAO() {
-        this.dataLoader = new DataLoader(sourceFileName);
+        this.dataLoader = new DataLoader(SOURCE_FILE_NAME);
     }
 
     public void addAssignment(String id, String name, String mentor, String description) {

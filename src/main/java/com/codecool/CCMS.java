@@ -2,26 +2,28 @@ package com.codecool;
 
 import com.codecool.customexceptions.NoControllerForUserException;
 import com.codecool.customexceptions.UserNotLoggedException;
+import com.codecool.login.Account;
 import com.codecool.login.LoginController;
 import com.codecool.login.UserSwitch;
-import com.codecool.user.User;
 import com.codecool.user.UserController;
 import com.codecool.view.CCMSView;
+import com.codecool.view.LoginConsoleView;
 
 public class CCMS {
     private LoginController loginController;
     private boolean isRunning;
     private final String[] MENU_OPTIONS = {"Login"};
-    private final String ASK_FOR_INPUT = "Please enter a number of option from above list:";
+    private final String BEFORE_INPUT_MESSAGE = "Please enter a number of option from above list:";
     private final String OPTION_NOT_RECOGNIZED_MESSAGE = "Sorry, this option seems to be corrupted." +
                                                          " Please, contact the administrator";
+    private final String ASK_FOR_OPTION = "Option: ";
 
     private CCMSView view;
-    private User user;
+    private Account account;
     private UserController userController;
 
     public CCMS(CCMSView view){
-        loginController = new LoginController(view);
+        loginController = new LoginController(new LoginConsoleView());
         this.view = view;
         isRunning = true;
     }
@@ -32,6 +34,7 @@ public class CCMS {
         view.waitAWhile();
         while (isRunning){
             if (loginController.isUserLogged()){
+                view.clearScreen();
                 userController.run();
             } else {
                 handleMenu();
@@ -46,7 +49,8 @@ public class CCMS {
         int option = -1;
 
         do{
-            option = view.askForNumber(ASK_FOR_INPUT);
+            view.println(BEFORE_INPUT_MESSAGE);
+            option = view.askForNumber(ASK_FOR_OPTION);
         } while (option < 0 || option > MENU_OPTIONS.length);
 
         if (option == view.getExitInput()){
@@ -73,14 +77,14 @@ public class CCMS {
 
     private void initializeUserController(){
         try{
-            user = loginController.getLoggedUser();
+            account = loginController.getLoggedUser();
         } catch (UserNotLoggedException e){
             view.printError(e.getMessage());
             return;
         }
 
         try{
-            userController = new UserSwitch().getControllerForUser(user);
+            userController = new UserSwitch().getControllerForAccount(account);
         } catch (NoControllerForUserException e){
             view.printError(e.getMessage());
         }

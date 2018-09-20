@@ -1,8 +1,7 @@
 package com.codecool.login;
 
 import com.codecool.customexceptions.UserNotLoggedException;
-import com.codecool.user.User;
-import com.codecool.view.View;
+import com.codecool.view.LoginView;
 
 public class LoginController {
     private final String NO_USER_ERROR_MESSAGE = "Tried to get non-existing user";
@@ -18,42 +17,51 @@ public class LoginController {
     private final String LOGIN_COINTAINS_WHITE_SPACE_MESSAGE = "Login cannot contain white spaces";
     private final String AUTHENTICATION_FAILED_MESSAGE = "Sorry, given login and password doesn't match";
 
-    private User loggedUser;
+    private Account loggedAccount;
     private boolean isUserLogged;
-    private View view;
+    private LoginView view;
 
-    public LoginController(View view){
+    public LoginController(LoginView view){
         isUserLogged = false;
         this.view = view;
     }
 
     public void logIn(){
         String login, password;
-        boolean isLogging = true;
 
-        while (isLogging){
-            boolean isLoginCorrect = false;
-            boolean isPasswordCorrect = false;
+        boolean isLoginCorrect = false;
+        boolean isPasswordCorrect = false;
 
-            do{
-                printLoginScreen();
-                login = view.askForText(ASK_FOR_LOGIN);
+        do{
+            printLoginScreen();
+            login = view.askForText(ASK_FOR_LOGIN);
 
-                if (login.toUpperCase().equals(QUIT_INPUT)) {
-                    return;
-                }
-            } while (!validateLogin(login));
-
-            password = view.askForText(ASK_FOR_PASSWORD);
-
-            if (validatePassword(login, password)){
-
-                // create a new user and store in loggedUser
-                isUserLogged = true;
-            } else {
-
+            if (login.toUpperCase().equals(QUIT_INPUT)) {
+                return;
             }
+        } while (!validateLogin(login));
+
+        password = view.askForPassword(ASK_FOR_PASSWORD);
+        Account chosenAccount;
+        try{
+            chosenAccount = getAccount(login);
+        } catch (IllegalArgumentException e){
+            view.println(AUTHENTICATION_FAILED_MESSAGE);
+            view.waitAWhile();
+            return;
         }
+
+        if (validatePassword(chosenAccount, password)){
+            loggedAccount = chosenAccount;
+            isUserLogged = true;
+        } else {
+            view.println(AUTHENTICATION_FAILED_MESSAGE);
+            view.waitAWhile();
+        }
+    }
+
+    private Account getAccount(String login) throws IllegalArgumentException{
+        return new AccountsDAO().getAccount(login);
     }
 
     private void printLoginScreen(){
@@ -82,22 +90,21 @@ public class LoginController {
         return true;
     }
 
-    private boolean validatePassword(String login, String password){
-        // TO DO
-        return false;
+    private boolean validatePassword(Account account, String password){
+        return account.getPassword().equals(password);
     }
 
     public void logOut(){
-        loggedUser = null;
+        isUserLogged = false;
     }
 
     public boolean isUserLogged(){
         return isUserLogged;
     }
 
-    public User getLoggedUser() throws UserNotLoggedException {
+    public Account getLoggedUser() throws UserNotLoggedException {
         if (isUserLogged){
-            return loggedUser;
+            return loggedAccount;
         }
 
         throw new UserNotLoggedException(NO_USER_ERROR_MESSAGE);

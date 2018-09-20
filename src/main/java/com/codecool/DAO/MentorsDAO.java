@@ -39,7 +39,7 @@ public class MentorsDAO {
             listOfMentors[i][2] = mentorstList.get(i).getPassword();
             listOfMentors[i][3] = mentorstList.get(i).getName();
             listOfMentors[i][4] = mentorstList.get(i).getSurname();
-            listOfMentors[i][5] = mentorstList.get(i).getPhonNumber();
+            listOfMentors[i][5] = mentorstList.get(i).getPhoneNumber();
             listOfMentors[i][6] = mentorstList.get(i).getEmailAddres();
         }
 //        DataLoader daoloader = new DataLoader("MentorsCSV.CSV");
