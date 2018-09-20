@@ -1,8 +1,8 @@
 package com.codecool.login;
 
 import com.codecool.customexceptions.NoControllerForUserException;
-import com.codecool.user.User;
 import com.codecool.user.*;
+import com.codecool.view.ConsoleView;
 
 public class UserSwitch {
     private final String UNKNOWN_USER_ERROR =
@@ -12,7 +12,7 @@ public class UserSwitch {
         AccessLevel accountAccessLevel = account.getAccessLevel();
         switch (accountAccessLevel) {
             case MANAGER:
-                return new ManagerController();
+                return new ManagerController(new ConsoleView());
             case EMPLOYEE:
                 return new AdministrativeEmployeeController();
             case MENTOR:

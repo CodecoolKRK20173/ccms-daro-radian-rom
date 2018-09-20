@@ -12,8 +12,6 @@ public class LoginConsoleView extends ConsoleView implements LoginView {
 //            throw new UnsupportedOperationException("No console found");
 //        }
 //
-//        String pass = console.readPassword(askMessage).toString();
-//        println(pass);
-//        return pass;
+//        return console.readPassword(askMessage).toString();
 //    }
 }

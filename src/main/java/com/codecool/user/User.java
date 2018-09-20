@@ -1,7 +1,7 @@
 package com.codecool.user;
 
 
-public abstract class  User {
+public abstract class User {
 
     final int ID_TEXT_WIDTH = 2;
     final int USERNAME_TEXT_WIDTH = 15;
