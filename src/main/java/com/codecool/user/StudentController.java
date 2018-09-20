@@ -3,16 +3,15 @@ package com.codecool.user;
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
+import com.codecool.login.Account;
 import com.codecool.model.assignment.Assignment;
 import com.codecool.model.assignment.SubmittedAssignment;
-import com.codecool.view.oldClassess.AssignmentView;
-import com.codecool.view.oldClassess.StudentView;
+import com.codecool.view.StudentView;
 
 import java.util.List;
 
 public class StudentController extends UserController {
 
-    private AssignmentView aview;
     private String studentID;
     private boolean isRunning = true;
     private SubmittedAssignmentDAO submittedAssignmentDAO;
@@ -20,12 +19,12 @@ public class StudentController extends UserController {
     private StudentsDAO studentsDAO;
     private AssignmentDAO assignmentDAO;
 
-    public StudentController() {
+    public StudentController(Account account, StudentView view) {
+        super(account);
         studentsDAO = new StudentsDAO();
         assignmentDAO = new AssignmentDAO();
         submittedAssignmentDAO = new SubmittedAssignmentDAO();
-        view = new StudentView();
-        aview = new AssignmentView();
+        this.view = view;
         studentID = "stud3";
     }
 
@@ -61,7 +60,7 @@ public class StudentController extends UserController {
     }
 
     public void showListOfAssigments(){
-        aview.printListOfAssignmets(assignmentDAO.loadAssignments());
+        view.printAssignments(assignmentDAO.loadAssignments());
     }
 
     public void viewMyGrades(){
