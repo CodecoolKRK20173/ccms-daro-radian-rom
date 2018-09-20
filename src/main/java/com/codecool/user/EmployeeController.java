@@ -17,9 +17,25 @@ public class EmployeeController extends UserController {
     }
 
 
-
     @Override
     public void run() {
+        boolean isRunning = true;
 
+        while (isRunning) {
+            view.clearScreen();
+            view.printOptions(OPTIONS);
+            int choice = view.askForNumber("Option");
+
+            switch (choice) {
+                case 1:
+                    view.printStudents(studentsDAO.getListOfStudents());
+                    break;
+                case 0:
+                    isRunning = false;
+                default:
+                    view.printError("Unknown choice!");
+            }
+            view.askForText("PRESS ENTER TO CONTINUE...");
+        }
     }
 }
