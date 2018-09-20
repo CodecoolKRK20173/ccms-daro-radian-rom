@@ -6,6 +6,10 @@ import com.codecool.login.Account;
 import com.codecool.login.AccountsDAO;
 import com.codecool.view.ManagerView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ManagerController extends UserController {
     private final String WELCOME_MESSAGE = "";
     private final String[] OPTIONS = {"List employers", "List students", "Add employee",
@@ -84,7 +88,7 @@ public class ManagerController extends UserController {
         String surname = view.askForText("Enter surname: ");
         String email = view.askForText("Enter email: ");
         String phone = view.askForText("Enter phone number: ");
-        String type = view.askForText("Precise type of employee (employee or mentor): ");
+        String type = chooseTypeOfEmployee();
         staffDAO.addStaff(employeeId, login, password, name, surname, email, phone, type);
         accountsDAO.makeAccount(employeeId, login, password, type);
     }
@@ -96,5 +100,21 @@ public class ManagerController extends UserController {
     private void removeEmployee(){
         String employeeId = view.askForText("Enter employee id: ");
         staffDAO.removeStaff(employeeId);
+    }
+
+    private String chooseTypeOfEmployee() {
+        List<String> types = new ArrayList<>(Arrays.asList("mentor", "employee"));
+        String type = "";
+        boolean isCorrect = false;
+
+        while (!isCorrect) {
+            type = view.askForText("Precise type of employee (employee or mentor): ");
+            if (types.contains(type)) {
+                isCorrect = true;
+            } else {
+                view.printError("Wrong choice, provide correct type...");
+            }
+        }
+        return type;
     }
 }
