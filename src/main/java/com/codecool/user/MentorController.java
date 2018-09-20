@@ -3,6 +3,7 @@ package com.codecool.user;
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
+import com.codecool.login.Account;
 import com.codecool.model.assignment.Assignment;
 import com.codecool.model.assignment.SubmittedAssignment;
 import com.codecool.view.AssignmentView;
@@ -14,17 +15,19 @@ import java.util.List;
 public class MentorController extends UserController {
 
     private boolean isRunning = true;
-    private StudentView view;
-    private AssignmentView aview;
-    StudentsDAO studentsDAO;
-    AssignmentDAO assignmentDAO;
-    SubmittedAssignmentDAO submittedAssignmentDAO;
+//    private AssignmentView aview;
+    private StudentsDAO studentsDAO;
+    private AssignmentDAO assignmentDAO;
+    private SubmittedAssignmentDAO submittedAssignmentDAO;
+    private Account account;
+    private View view;
 
-    public MentorController() {
+    public MentorController( Account account,MentorView view ) {
         studentsDAO = new StudentsDAO();
         assignmentDAO = new AssignmentDAO();
         submittedAssignmentDAO = new SubmittedAssignmentDAO();
-        view = new StudentView();
+        this.view = view;
+        this.account = account;
         aview = new AssignmentView();
     }
 
@@ -133,14 +136,4 @@ public class MentorController extends UserController {
         assignmentDAO.addAssignment(id,name, mentor,description);
     }
 
-
-//    public String gradeAssigment() {
-//        return id;
-//    }
-
-//    public String checkAttendanceOfStudent() {
-//        return id;
-//    }
-
-//    }
 }

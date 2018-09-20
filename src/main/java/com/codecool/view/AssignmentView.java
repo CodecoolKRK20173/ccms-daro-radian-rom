@@ -20,6 +20,4 @@ public class AssignmentView extends ConsoleView {
             index++;
         }
     }
-
-
 }

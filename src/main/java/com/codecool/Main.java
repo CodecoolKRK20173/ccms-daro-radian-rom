@@ -15,5 +15,6 @@ public class Main {
 
         StudentController studentController = new StudentController();
         studentController.run();
+
     }
 }
