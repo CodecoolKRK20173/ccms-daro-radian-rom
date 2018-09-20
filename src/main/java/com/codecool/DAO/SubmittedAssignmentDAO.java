@@ -39,17 +39,21 @@ public class SubmittedAssignmentDAO {
         }
         return submittedAssignments;
     }
-//
-//    private LocalDate turnStringToDate(String dateString) {
-//        String[] dateStrings = dateString.split("-");
-//        int yearIndex = 0;
-//        int monthIndex = 1;
-//        int dayIndex = 2;
-//        int year = Integer.valueOf(dateStrings[yearIndex]);
-//        int month = Integer.valueOf(dateStrings[monthIndex]);
-//        int day = Integer.valueOf(dateStrings[dayIndex]);
-//        return LocalDate.of(year, month, day);
-//    }
+
+    public SubmittedAssignment getSubmittedAssignmentById(String id) {
+        List<SubmittedAssignment> submittedAssignments = loadSubmittedAssignments();
+        SubmittedAssignment wantedSubmittedAssignment = null;
+
+        for (SubmittedAssignment submittedAssignment: submittedAssignments) {
+            if (submittedAssignment.getAssignmentId().equals(id)) {
+                wantedSubmittedAssignment = submittedAssignment;
+            }
+        }
+        submittedAssignments.remove(wantedSubmittedAssignment);
+        saveSubmittedAssignments(submittedAssignments);
+
+        return wantedSubmittedAssignment;
+    }
 
     private void saveSubmittedAssignments(List<SubmittedAssignment> submittedAssignments) {
         List<String[]> submittedAssignmentsDataToSave = new ArrayList<>();
