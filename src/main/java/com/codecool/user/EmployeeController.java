@@ -32,6 +32,7 @@ public class EmployeeController extends UserController {
                     break;
                 case 0:
                     isRunning = false;
+                    break;
                 default:
                     view.printError("Unknown choice!");
             }
