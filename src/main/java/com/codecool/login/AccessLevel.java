@@ -1,6 +1,6 @@
 package com.codecool.login;
 
-public enum Access {
+public enum AccessLevel {
     MANAGER,
     EMPLOYEE,
     MENTOR,

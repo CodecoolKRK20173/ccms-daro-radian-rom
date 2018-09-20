@@ -1,16 +1,18 @@
 package com.codecool.login;
 
+import com.codecool.customexceptions.FieldsNotInitializedException;
+
 public class Account {
     private String login;
     private String password;
     private String userId;
-    private Access access;
+    private AccessLevel accessLevel;
 
-    public Account (String login, String password, String userId, Access access){
+    private Account (String login, String password, String userId, AccessLevel accessLevel){
         this.login = login;
         this.password = password;
         this.userId = userId;
-        this.access = access;
+        this.accessLevel = accessLevel;
     }
 
     public String getLogin(){
@@ -25,7 +27,44 @@ public class Account {
         return userId;
     }
 
-    public Access getAccess(){
-        return access;
+    public AccessLevel getAccessLevel(){
+        return accessLevel;
+    }
+
+    public static class AccountBuilder{
+        private final String NULL_FIELDS_MESSAGE = "All account fields must be initialized!";
+
+        private String login;
+        private String password;
+        private String userId;
+        private AccessLevel accessLevel;
+
+        public AccountBuilder withLogin(String login){
+            this.login = login;
+            return this;
+        }
+
+        public AccountBuilder withPassword(String password){
+            this.password = password;
+            return this;
+        }
+
+        public AccountBuilder withID(String id){
+            userId = id;
+            return this;
+        }
+
+        public AccountBuilder withAccessLevel(AccessLevel accessLevel){
+            this.accessLevel = accessLevel;
+            return this;
+        }
+
+        public Account build() throws FieldsNotInitializedException{
+            if (login == null || password == null || userId == null || accessLevel == null){
+                throw new FieldsNotInitializedException(NULL_FIELDS_MESSAGE);
+            }
+
+            return new Account(login, password, userId, accessLevel);
+        }
     }
 }

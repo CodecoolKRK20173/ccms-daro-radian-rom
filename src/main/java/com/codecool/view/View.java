@@ -55,6 +55,8 @@ public class View {
     }
 
     public String askForText(String askMessage){
+        scanner = new Scanner(System.in);
+
         print(askMessage);
         return scanner.nextLine().trim();
     }

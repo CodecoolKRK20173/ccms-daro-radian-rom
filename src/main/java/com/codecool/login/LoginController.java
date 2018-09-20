@@ -28,32 +28,40 @@ public class LoginController {
 
     public void logIn(){
         String login, password;
-        boolean isLogging = true;
 
-        while (isLogging){
-            boolean isLoginCorrect = false;
-            boolean isPasswordCorrect = false;
+        boolean isLoginCorrect = false;
+        boolean isPasswordCorrect = false;
 
-            do{
-                printLoginScreen();
-                login = view.askForText(ASK_FOR_LOGIN);
+        do{
+            printLoginScreen();
+            login = view.askForText(ASK_FOR_LOGIN);
 
-                if (login.toUpperCase().equals(QUIT_INPUT)) {
-                    return;
-                }
-            } while (!validateLogin(login));
-
-            password = view.askForText(ASK_FOR_PASSWORD);
-
-            if (validatePassword(login, password)){
-
-                // create a new user and store in loggedUser
-                isUserLogged = true;
-            } else {
-                view.println(AUTHENTICATION_FAILED_MESSAGE);
-                view.waitAWhile();
+            if (login.toUpperCase().equals(QUIT_INPUT)) {
+                return;
             }
+        } while (!validateLogin(login));
+
+        password = view.askForText(ASK_FOR_PASSWORD);
+        Account chosenAccount;
+        try{
+            chosenAccount = getAccount(login);
+        } catch (IllegalArgumentException e){
+            view.println(AUTHENTICATION_FAILED_MESSAGE);
+            view.waitAWhile();
+            return;
         }
+
+        if (validatePassword(chosenAccount, password)){
+            loggedAccount = chosenAccount;
+            isUserLogged = true;
+        } else {
+            view.println(AUTHENTICATION_FAILED_MESSAGE);
+            view.waitAWhile();
+        }
+    }
+
+    private Account getAccount(String login) throws IllegalArgumentException{
+        return new AccountsDAO().getAccount(login);
     }
 
     private void printLoginScreen(){
@@ -82,14 +90,8 @@ public class LoginController {
         return true;
     }
 
-    private boolean validatePassword(String login, String password){
-        AccountsDAO accountsDAO = new AccountsDAO();
-        // TO DO
-        Account account = accountsDAO.getAccount(login);
-        if (account.getPassword().equals(password)){
-            return true;
-        }
-        return false;
+    private boolean validatePassword(Account account, String password){
+        return account.getPassword().equals(password);
     }
 
     public void logOut(){

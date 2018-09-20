@@ -33,6 +33,7 @@ public class CCMS {
         view.waitAWhile();
         while (isRunning){
             if (loginController.isUserLogged()){
+                view.clearScreen();
                 userController.run();
             } else {
                 handleMenu();
@@ -82,7 +83,7 @@ public class CCMS {
         }
 
         try{
-            userController = new UserSwitch().getControllerForUser(account);
+            userController = new UserSwitch().getControllerForAccount(account);
         } catch (NoControllerForUserException e){
             view.printError(e.getMessage());
         }

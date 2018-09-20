@@ -7,8 +7,8 @@ public class UserSwitch {
     private final String UNKNOWN_USER_ERROR =
             String.format("Given user is not recognized by %s class", getClass().getName());
 
-    public UserController getControllerForUser(Account account) throws NoControllerForUserException{
-        Access accountAccessLevel = account.getAccess();
+    public UserController getControllerForAccount(Account account) throws NoControllerForUserException{
+        AccessLevel accountAccessLevel = account.getAccessLevel();
         switch (accountAccessLevel) {
             case MANAGER:
                 return new ManagerController();
