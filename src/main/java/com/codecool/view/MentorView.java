@@ -7,7 +7,7 @@ import com.codecool.user.Student;
 import java.util.List;
 
 public interface MentorView extends UserView{
-    void printStudents(List<Student> studentList);
-    void printAssignments(List<Assignment> assignmentList);
-    void printSubmittedAssignments(List<SubmittedAssignment> submittedAssignmentList);
+    public void printStudents(List<Student> studentList);
+    public void printAssignments(List<Assignment> assignmentList);
+    public void printSubmittedAssignments(List<SubmittedAssignment> submittedAssignmentList);
 }
