@@ -7,6 +7,7 @@ import com.codecool.login.LoginController;
 import com.codecool.login.UserSwitch;
 import com.codecool.user.UserController;
 import com.codecool.view.CCMSView;
+import com.codecool.view.LoginConsoleView;
 
 public class CCMS {
     private LoginController loginController;
@@ -22,7 +23,7 @@ public class CCMS {
     private UserController userController;
 
     public CCMS(CCMSView view){
-        loginController = new LoginController(view);
+        loginController = new LoginController(new LoginConsoleView());
         this.view = view;
         isRunning = true;
     }

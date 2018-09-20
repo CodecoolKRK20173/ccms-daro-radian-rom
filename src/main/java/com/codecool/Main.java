@@ -1,10 +1,10 @@
 package com.codecool;
 
-import com.codecool.view.CCMSView;
+import com.codecool.view.CCMSConsoleView;
 
 public class Main {
     public static void main(String[] args){
-        CCMSView ccmsView = new CCMSView();
+        CCMSConsoleView ccmsView = new CCMSConsoleView();
         CCMS ccms = new CCMS(ccmsView);
         ccms.run();
     }

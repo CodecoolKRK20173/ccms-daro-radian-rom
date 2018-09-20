@@ -1,7 +1,7 @@
 package com.codecool.login;
 
 import com.codecool.customexceptions.UserNotLoggedException;
-import com.codecool.view.View;
+import com.codecool.view.LoginView;
 
 public class LoginController {
     private final String NO_USER_ERROR_MESSAGE = "Tried to get non-existing user";
@@ -19,9 +19,9 @@ public class LoginController {
 
     private Account loggedAccount;
     private boolean isUserLogged;
-    private View view;
+    private LoginView view;
 
-    public LoginController(View view){
+    public LoginController(LoginView view){
         isUserLogged = false;
         this.view = view;
     }
@@ -41,7 +41,7 @@ public class LoginController {
             }
         } while (!validateLogin(login));
 
-        password = view.askForText(ASK_FOR_PASSWORD);
+        password = view.askForPassword(ASK_FOR_PASSWORD);
         Account chosenAccount;
         try{
             chosenAccount = getAccount(login);
