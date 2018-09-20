@@ -5,5 +5,5 @@ import com.codecool.user.Student;
 import java.util.List;
 
 public interface StudentPrintable {
-    void PrintStudent(List<Student> studentList);
+    void printStudent(List<Student> studentList);
 }
