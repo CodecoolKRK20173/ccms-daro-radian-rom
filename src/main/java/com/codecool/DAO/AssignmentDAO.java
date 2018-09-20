@@ -62,7 +62,18 @@ public class AssignmentDAO {
         }
 
         dataLoader.saveContentToFile(assignmentsDataToSave.toArray(new String[][]{}));
+    }
 
+    public void removeAssignment(String assignmentId) {
+        List<Assignment> assignments = loadAssignments();
+        Assignment assignmentToRemove = null;
+
+        for (Assignment assignment: assignments) {
+            if (assignment.getId().equals(assignmentId)) assignmentToRemove = assignment;
+        }
+
+        assignments.remove(assignmentToRemove);
+        saveAssignments(assignments);
     }
 
 

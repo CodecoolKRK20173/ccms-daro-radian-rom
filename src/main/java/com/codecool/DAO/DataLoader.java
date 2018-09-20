@@ -15,7 +15,6 @@ public class DataLoader {
 
     public String[][] getFileContent() {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        //File tmpSourceFile = new File(classLoader.getResource(sourceFileName).getFile());
         Path tempPath = Paths.get("src/main/resources/" + sourceFileName);
 
         if (!Files.exists(tempPath)) {
@@ -29,13 +28,8 @@ public class DataLoader {
             }
         }
 
-        //InputStream inputStream = classLoader.getResourceAsStream(sourceFileName);
-        //inputStream = classLoader.getResourceAsStream(sourceFileName);
         InputStreamReader inputStreamReader = new InputStreamReader(classLoader.getResourceAsStream(sourceFileName)); // gdy plik csv nie istnieje wywala NullPointera
-
-//        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
 
         ArrayList<String[]> fileContent = new ArrayList<String[]>();
 
@@ -81,7 +75,17 @@ public class DataLoader {
 
             stringBuilderContent.append(stringBuilderRow.toString());
         }
-
+        //System.out.println(stringBuilderContent.toString());
         return stringBuilderContent.toString();
+    }
+
+    public String[] getRowContainingString(String wantedString, int atIndex) {
+        String[][] content = getFileContent();
+        String[] wantedRow = new String[content[0].length];
+
+        for (String[] row : content) {
+            if (row[atIndex].equals(wantedString)) wantedRow = row;
+        }
+        return wantedRow;
     }
 }
