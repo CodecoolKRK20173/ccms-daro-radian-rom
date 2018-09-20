@@ -29,6 +29,7 @@ public class EmployeeController extends UserController {
             switch (choice) {
                 case 1:
                     view.printStudents(studentsDAO.getListOfStudents());
+                    break;
                 case 0:
                     isRunning = false;
                 default:
