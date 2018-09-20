@@ -55,7 +55,7 @@ public class SubmittedAssignmentDAO {
         return wantedSubmittedAssignment;
     }
 
-    private void saveSubmittedAssignments(List<SubmittedAssignment> submittedAssignments) {
+    public void saveSubmittedAssignments(List<SubmittedAssignment> submittedAssignments) {
         List<String[]> submittedAssignmentsDataToSave = new ArrayList<>();
 
         for (SubmittedAssignment submittedAssignment: submittedAssignments) {

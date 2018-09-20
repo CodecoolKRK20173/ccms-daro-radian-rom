@@ -7,6 +7,7 @@ import com.codecool.login.Account;
 import com.codecool.model.assignment.SubmittedAssignment;
 import com.codecool.view.MentorView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class MentorController extends UserController {
@@ -58,6 +59,7 @@ public class MentorController extends UserController {
                 showListOfAssignments();
                 break;
             case (6):
+                gradeSubmittedAssignment();
                 break;
             case (0):
                 isRunning = false;
@@ -113,10 +115,18 @@ public class MentorController extends UserController {
     }
 
     public void gradeSubmittedAssignment() {
-        List<SubmittedAssignment> submittedAssignments = submittedAssignmentDAO.loadSubmittedAssignments();
-        view.printSubmittedAssignments(submittedAssignments);
+        view.printSubmittedAssignments(submittedAssignmentDAO.loadSubmittedAssignments());
 
-        submittedAssignmentDAO.g
+        String idOfAssignmentToGrade = view.askForText("Type id of submitted assignment to grade: ");
+        SubmittedAssignment submittedAssignmentToGrade =  submittedAssignmentDAO.getSubmittedAssignmentById(idOfAssignmentToGrade);
+        submittedAssignmentToGrade.setGrade(view.askForNumber("Type a grade: "));
+        submittedAssignmentToGrade.setGraded(true);
+        submittedAssignmentToGrade.setMentorGraded(account.getLogin());
+        submittedAssignmentToGrade.setGradedDate(LocalDate.now().toString());
+
+        List<SubmittedAssignment> submittedAssignments = submittedAssignmentDAO.loadSubmittedAssignments();
+        submittedAssignments.add(submittedAssignmentToGrade);
+        submittedAssignmentDAO.saveSubmittedAssignments(submittedAssignments);
     }
 
 }

@@ -68,7 +68,7 @@ public class StudentsDAO {
 
     public void removeStudent( int number ) {
         List<Student> studentsList = getListOfStudents();
-        studentsList.remove( number);
+        studentsList.remove(number -1);
         exportListOfStudent( studentsList );
     }
 
