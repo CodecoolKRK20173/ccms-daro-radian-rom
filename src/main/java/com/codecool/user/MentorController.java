@@ -2,12 +2,13 @@ package com.codecool.user;
 
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
+import com.codecool.view.ConsoleView;
 import com.codecool.view.View;
 
 public class MentorController extends UserController {
 
     private boolean isRunning = true;
-    private View view =new View();
+    private View view =new ConsoleView();
 
     @Override
     public void run( ) {
