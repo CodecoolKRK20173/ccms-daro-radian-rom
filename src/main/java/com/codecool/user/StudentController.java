@@ -1,16 +1,15 @@
 package com.codecool.user;
 
-import java.time.LocalDate;
+
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
+import com.codecool.login.Account;
 import com.codecool.model.assignment.Assignment;
 import com.codecool.model.assignment.SubmittedAssignment;
-import com.codecool.view.AssignmentView;
 import com.codecool.view.StudentView;
-import com.codecool.view.View;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class StudentController extends UserController {
@@ -22,17 +21,14 @@ public class StudentController extends UserController {
     private StudentsDAO studentsDAO;
     private AssignmentDAO assignmentDAO;
 
-    public StudentController( Account account,StudentView view) {
+    public StudentController(Account account, StudentView view) {
+        super(account);
         studentsDAO = new StudentsDAO();
         assignmentDAO = new AssignmentDAO();
         submittedAssignmentDAO = new SubmittedAssignmentDAO();
         this.view = view;
-        this.account = account;
-        aview = new AssignmentView();
         studentID = account.getUserId();
-//        studentID = "stud3";
-        this.view = view;
-        studentID = "stud3";
+
     }
 
     @Override
@@ -89,6 +85,5 @@ public class StudentController extends UserController {
         System.out.println(assignment);
         String studentId = studentID;
         submittedAssignmentDAO.addSubmittedAssignment( idAssignment,studentId);
-
     }
 }

@@ -17,16 +17,15 @@ public class MentorController extends UserController {
     private AssignmentDAO assignmentDAO;
     private SubmittedAssignmentDAO submittedAssignmentDAO;
     private Account account;
-    private View view;
+    private MentorView view;
 
     public MentorController( Account account,MentorView view ) {
+        super(account);
         studentsDAO = new StudentsDAO();
         assignmentDAO = new AssignmentDAO();
         submittedAssignmentDAO = new SubmittedAssignmentDAO();
         this.view = view;
         this.account = account;
-        aview = new AssignmentView();
-        this.view = view;
     }
 
     @Override
