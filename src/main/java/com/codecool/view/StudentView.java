@@ -5,7 +5,7 @@ import com.codecool.user.Student;
 
 import java.util.List;
 
-public class StudentView extends View {
+public class StudentView extends ConsoleView {
 
     public void printListOfStudenst(List<Student> studentsList){
         int index = 1;

@@ -5,7 +5,7 @@ import com.codecool.user.Student;
 
 import java.util.List;
 
-public class AssignmentView extends View {
+public class AssignmentView extends ConsoleView {
 
     public void printListOfAssignmets( List<Assignment> assignments){
         int index = 1;
