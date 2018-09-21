@@ -1,4 +1,4 @@
-package com.codecool.oldClassess;
+package com.codecool.user;
 
 import com.codecool.user.User;
 

@@ -1,6 +1,6 @@
 package com.codecool.DAO;
 
-import com.codecool.oldClassess.Mentor;
+import com.codecool.user.Mentor;
 
 import java.util.ArrayList;
 import java.util.List;
