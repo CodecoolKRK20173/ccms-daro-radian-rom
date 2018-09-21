@@ -2,6 +2,7 @@ package com.codecool.view.consoleImplementations;
 
 import com.codecool.user.Staff;
 import com.codecool.user.Student;
+import com.codecool.user.User;
 import com.codecool.view.ManagerView;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class ManagerConsoleView extends UserConsoleView implements ManagerView {
     @Override
     public void printStudents(List<Student> studentList) {
         StringBuilder sb;
-        for (Student student : studentList){
+        for (User student : studentList){
             sb = new StringBuilder();
             sb.append(center(student.getId(), COLUMN_WIDTH));    sb.append(" | ");
             sb.append(center(student.getName(), COLUMN_WIDTH));  sb.append(" | ");

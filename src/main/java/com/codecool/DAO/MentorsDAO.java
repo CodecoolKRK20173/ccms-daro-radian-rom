@@ -1,6 +1,6 @@
 package com.codecool.DAO;
 
-import com.codecool.oldClassess.Mentor;
+import com.codecool.user.Staff;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,9 @@ public class MentorsDAO {
         this.daoloader = daoloader;
     }
 
-    public List<Mentor> getListOfMentors(){
+    public List<Staff> getListOfMentors(){
         String[][] loader = daoloader.getFileContent();
-        List<Mentor> mentorsList = new ArrayList<Mentor>();
+        List<Staff> mentorsList = new ArrayList<Staff>();
 
         for ( int i =0; i < loader.length; i++){
             String id = loader[i][0];
@@ -25,12 +25,12 @@ public class MentorsDAO {
             String surname = loader[i][4];
             String phonNumber = loader[i][5];
             String emailAdders = loader[i][6];
-            mentorsList.add(new Mentor( id,userName, password ,name, surname, phonNumber, emailAdders ));
+            mentorsList.add(new Staff( id,userName, password ,name, surname, phonNumber, emailAdders , "mentor"));
             }
         return mentorsList;
     }
 
-    public void exportListOfMentors(List<Mentor> mentorstList ){
+    public void exportListOfMentors(List<Staff> mentorstList ){
         int listSize = mentorstList.size();
         String[][] listOfMentors = new String[listSize][7];
         for ( int i =0; i < mentorstList.size(); i++ ){
@@ -48,24 +48,24 @@ public class MentorsDAO {
 
 
     public String toString( ){
-        List<Mentor> mentorsList = getListOfMentors();
+        List<Staff> mentorsList = getListOfMentors();
         StringBuilder sBuilder = new StringBuilder();
-        for( Mentor mentor  : mentorsList ){
+        for( Staff mentor  : mentorsList ){
             sBuilder.append(mentor.toString() + "\n");
         }
         return sBuilder.toString();
     }
 
     public void addMentor( ){
-        List<Mentor> mentorsList = getListOfMentors();
-        Mentor mentor = new Mentor( "id", "userName", "password",  "name",
-                "surname",  "phonNumber", "emailAdders" );
+        List<Staff> mentorsList = getListOfMentors();
+        Staff mentor = new Staff( "id", "userName", "password",  "name",
+                "surname",  "phonNumber", "emailAdders", "mentor" );
         mentorsList.add( mentor );
         exportListOfMentors( mentorsList );
     }
 
     public void removeMentor( int number ) {
-        List<Mentor> mentorsList = getListOfMentors();
+        List<Staff> mentorsList = getListOfMentors();
         mentorsList.remove( number);
         exportListOfMentors( mentorsList );
     }
