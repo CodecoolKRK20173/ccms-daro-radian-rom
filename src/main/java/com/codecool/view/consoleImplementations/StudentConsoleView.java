@@ -1,7 +1,7 @@
 package com.codecool.view.consoleImplementations;
 
-import com.codecool.model.assignment.Assignment;
-import com.codecool.model.assignment.SubmittedAssignment;
+import com.codecool.assignment.Assignment;
+import com.codecool.assignment.SubmittedAssignment;
 import com.codecool.view.StudentView;
 
 import java.util.List;

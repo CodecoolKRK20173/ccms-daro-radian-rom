@@ -1,9 +1,10 @@
-package com.codecool.user;
+package com.codecool.controller;
 
 import com.codecool.DAO.StaffDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.login.Account;
 import com.codecool.login.AccountsDAO;
+import com.codecool.user.UserController;
 import com.codecool.view.ManagerView;
 
 import java.util.ArrayList;

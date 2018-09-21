@@ -1,7 +1,5 @@
 package com.codecool;
 
-import com.codecool.user.MentorController;
-import com.codecool.user.StudentController;
 import com.codecool.view.CCMSView;
 import com.codecool.view.consoleImplementations.CCMSConsoleView;
 
