@@ -1,6 +1,4 @@
-package com.codecool.model.assignment;
-
-import java.time.LocalDate;
+package com.codecool.assignment;
 
 public class SubmittedAssignment {
     private String assignmentId;

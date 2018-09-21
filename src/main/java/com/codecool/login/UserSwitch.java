@@ -1,5 +1,9 @@
 package com.codecool.login;
 
+import com.codecool.controller.EmployeeController;
+import com.codecool.controller.ManagerController;
+import com.codecool.controller.MentorController;
+import com.codecool.controller.StudentController;
 import com.codecool.customexceptions.NoControllerForUserException;
 import com.codecool.user.*;
 import com.codecool.view.consoleImplementations.EmployeeConsoleView;

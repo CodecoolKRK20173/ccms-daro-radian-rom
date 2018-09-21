@@ -1,4 +1,4 @@
-package com.codecool.model.assignment;
+package com.codecool.assignment;
 
 public class Assignment {
     private String id;

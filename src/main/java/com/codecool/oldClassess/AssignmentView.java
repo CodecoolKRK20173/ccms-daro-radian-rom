@@ -1,6 +1,6 @@
 package com.codecool.oldClassess;
 
-import com.codecool.model.assignment.Assignment;
+import com.codecool.assignment.Assignment;
 import com.codecool.view.consoleImplementations.ConsoleView;
 
 import java.util.List;

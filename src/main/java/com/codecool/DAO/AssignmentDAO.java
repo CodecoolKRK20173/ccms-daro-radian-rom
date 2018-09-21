@@ -1,6 +1,6 @@
 package com.codecool.DAO;
 
-import com.codecool.model.assignment.Assignment;
+import com.codecool.assignment.Assignment;
 
 import java.util.ArrayList;
 import java.util.List;

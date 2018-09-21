@@ -1,12 +1,13 @@
-package com.codecool.user;
+package com.codecool.controller;
 
 
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
 import com.codecool.login.Account;
-import com.codecool.model.assignment.Assignment;
-import com.codecool.model.assignment.SubmittedAssignment;
+import com.codecool.assignment.Assignment;
+import com.codecool.assignment.SubmittedAssignment;
+import com.codecool.user.UserController;
 import com.codecool.view.StudentView;
 
 

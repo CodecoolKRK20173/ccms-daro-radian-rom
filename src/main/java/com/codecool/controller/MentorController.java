@@ -1,10 +1,13 @@
-package com.codecool.user;
+package com.codecool.controller;
 
 import com.codecool.DAO.AssignmentDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
 import com.codecool.login.Account;
-import com.codecool.model.assignment.SubmittedAssignment;
+import com.codecool.assignment.SubmittedAssignment;
+import com.codecool.login.AccountsDAO;
+import com.codecool.user.Student;
+import com.codecool.user.UserController;
 import com.codecool.view.MentorView;
 
 import java.time.LocalDate;
@@ -18,6 +21,7 @@ public class MentorController extends UserController {
     private SubmittedAssignmentDAO submittedAssignmentDAO;
     private Account account;
     private MentorView view;
+    private AccountsDAO accountsDAO;
     private final String[] OPTIONS = {"See list of students", "Add student", "Remove student", "Add assignment", "Show assignments",
                                       "Grade assignment"};
 
@@ -26,6 +30,7 @@ public class MentorController extends UserController {
         studentsDAO = new StudentsDAO();
         assignmentDAO = new AssignmentDAO();
         submittedAssignmentDAO = new SubmittedAssignmentDAO();
+        accountsDAO = new AccountsDAO();
         this.view = view;
         this.account = account;
     }
@@ -82,6 +87,7 @@ public class MentorController extends UserController {
         String phonNumber = view.askForText("Enter phonNumber : ");
         String emailAdders = view.askForText("Enter emailAdders : ");
         studentsDAO.addStudent(id, userName, password, name, surname, phonNumber, emailAdders);
+        accountsDAO.makeAccount(id, userName, password, "student");
     }
 
     public void removeStudent() {

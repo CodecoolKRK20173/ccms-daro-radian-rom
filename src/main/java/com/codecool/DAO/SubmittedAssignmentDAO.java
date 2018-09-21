@@ -1,7 +1,6 @@
 package com.codecool.DAO;
 
-import com.codecool.model.assignment.Assignment;
-import com.codecool.model.assignment.SubmittedAssignment;
+import com.codecool.assignment.SubmittedAssignment;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

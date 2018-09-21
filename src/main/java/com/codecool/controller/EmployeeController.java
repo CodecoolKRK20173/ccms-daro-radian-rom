@@ -1,7 +1,8 @@
-package com.codecool.user;
+package com.codecool.controller;
 
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.login.Account;
+import com.codecool.user.UserController;
 import com.codecool.view.EmployeeView;
 
 public class EmployeeController extends UserController {
