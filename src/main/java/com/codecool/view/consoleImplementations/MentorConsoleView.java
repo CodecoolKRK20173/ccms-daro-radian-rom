@@ -9,8 +9,8 @@ import java.util.List;
 
 public class MentorConsoleView extends UserConsoleView implements MentorView {
     @Override
-
     public void printStudents(List<Student> studentList) {
+        clearScreen();
         int index = 1;
         for( Student student : studentList){
             System.out.println( index+". "+student.toString());
@@ -20,6 +20,7 @@ public class MentorConsoleView extends UserConsoleView implements MentorView {
 
     @Override
     public void printAssignments(List<Assignment> assignmentList) {
+        clearScreen();
         int index = 1;
         for( Assignment assignmet: assignmentList){
             assignmet.getName();
@@ -34,6 +35,7 @@ public class MentorConsoleView extends UserConsoleView implements MentorView {
 
     @Override
     public void printSubmittedAssignments(List<SubmittedAssignment> submittedAssignmentList) {
+         clearScreen();
 //       List<SubmittedAssignment> listSubmittedAssignment = submittedAssignmentDAO.loadSubmittedAssignments();
         int index = 1;
         for ( SubmittedAssignment  assignment : submittedAssignmentList ){

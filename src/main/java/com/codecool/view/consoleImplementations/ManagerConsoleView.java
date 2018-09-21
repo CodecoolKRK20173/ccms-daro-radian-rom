@@ -10,6 +10,7 @@ import java.util.List;
 public class ManagerConsoleView extends UserConsoleView implements ManagerView {
     @Override
     public void printStudents(List<Student> studentList) {
+        clearScreen();
         StringBuilder sb;
         for (User student : studentList){
             sb = new StringBuilder();
@@ -25,6 +26,7 @@ public class ManagerConsoleView extends UserConsoleView implements ManagerView {
 
     @Override
     public void printStaff(List<Staff> staffList) {
+        clearScreen();
         StringBuilder sb;
         for (Staff staff : staffList){
             sb = new StringBuilder();

@@ -32,6 +32,8 @@ public class ConsoleView implements View {
     }
 
     public void printOptions(String[] options){
+        println("");
+        println("");
         for (int i = 0; i < options.length; i++) {
             println(String.format("%d. %s", i+1, options[i]));
         }

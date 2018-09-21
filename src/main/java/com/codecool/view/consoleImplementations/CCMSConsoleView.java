@@ -12,5 +12,6 @@ public class CCMSConsoleView extends ConsoleView implements CCMSView {
         for (String line : titleASCII){
             println(line);
         }
+        println(":)");
     }
 }

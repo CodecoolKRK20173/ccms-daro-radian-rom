@@ -37,11 +37,10 @@ public class MentorController extends UserController {
 
     @Override
     public void run() {
+        view.printWelcomeMessage("Mentor");
         while (isRunning) {
-            view.printWelcomeMessage("Mentor");
             view.printOptions(OPTIONS);
             handleMenu();
-            view.clearScreen();
         }
     }
 
@@ -70,11 +69,12 @@ public class MentorController extends UserController {
                 isRunning = false;
                 break;
             default:
-                    view.printError("Unknown choice, try again...");
+                view.printError("Unknown choice, try again...");
         }
     }
 
     public void showListOfStudenst() {
+
         view.printStudents(studentsDAO.getListOfStudents());
     }
 
