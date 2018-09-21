@@ -1,6 +1,7 @@
 package com.codecool.DAO;
 
 import com.codecool.user.Staff;
+import com.codecool.user.Mentor;
 
 import java.util.ArrayList;
 import java.util.List;

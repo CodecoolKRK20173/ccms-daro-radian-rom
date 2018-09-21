@@ -28,4 +28,13 @@ public abstract class UserConsoleView extends ConsoleView implements UserView {
             println(sb.toString());
         }
     }
+
+    private String center (String s, int width){
+        int padSize = width - s.length();
+        int padStart = s.length() + padSize / 2;
+
+        s = String.format("%" + padStart + "s", s);
+        s = String.format("%-" + width  + "s", s);
+        return s;
+    }
 }
