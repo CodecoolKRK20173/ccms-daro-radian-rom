@@ -14,6 +14,7 @@ public class DataLoader {
     }
 
     public String[][] getFileContent() {
+        ArrayList<String[]> fileContent = new ArrayList<String[]>();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         Path tempPath = Paths.get("src/main/resources/" + sourceFileName);
 
@@ -28,14 +29,12 @@ public class DataLoader {
             }
         }
 
-        InputStreamReader inputStreamReader = new InputStreamReader(classLoader.getResourceAsStream(sourceFileName)); // gdy plik csv nie istnieje wywala NullPointera
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-        ArrayList<String[]> fileContent = new ArrayList<String[]>();
-
-        String line = null;
-
         try {
+            File source = new File("src/main/resources/" + sourceFileName);
+            InputStream inputStream = new FileInputStream(source);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream); // gdy plik csv nie istnieje wywala NullPointera
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 fileContent.add(line.split("\t"));
             }
