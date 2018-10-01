@@ -9,6 +9,7 @@ import com.codecool.login.AccountsDAO;
 import com.codecool.user.Student;
 import com.codecool.user.UserController;
 import com.codecool.view.MentorView;
+import com.codecool.view.View;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +24,7 @@ public class MentorController extends UserController {
     private MentorView view;
     private AccountsDAO accountsDAO;
     private final String[] OPTIONS = {"See list of students", "Add student", "Remove student", "Add assignment", "Show assignments",
-                                      "Grade assignment"};
+                                      "Grade assignment", "Edit student data"};
 
     public MentorController(Account account, MentorView view) {
         super(account);
@@ -64,6 +65,9 @@ public class MentorController extends UserController {
                 break;
             case (6):
                 gradeSubmittedAssignment();
+                break;
+            case (7):
+                editStudentData();
                 break;
             case (0):
                 isRunning = false;
@@ -135,4 +139,36 @@ public class MentorController extends UserController {
         submittedAssignmentDAO.saveSubmittedAssignments(submittedAssignments);
     }
 
+    public void editStudentData() {
+        int studentIndex = chooseStudent();
+        List<Student> students = studentsDAO.getListOfStudents();
+        Student student = students.get(studentIndex);
+        students.remove(student);
+        setNewStudentData(student);
+        students.add(student);
+        studentsDAO.exportListOfStudent(students);
+    }
+
+    private int chooseStudent() {
+        showListOfStudenst();
+        boolean isCorrect = false;
+        int choice = -1;
+
+        while (!isCorrect) {
+            choice = view.askForNumber("Type number of student to edit: ");
+
+            if (choice - 1 >= 0 && choice <= studentsDAO.getListOfStudents().size()) {
+                isCorrect = true;
+            } else {
+                view.printError("WRONG NUMBER!");
+            }
+        }
+        return  choice -1;
+    }
+
+    private void setNewStudentData(Student student) {
+        student.setUserName(view.askForText("Type student's new username: "));
+        student.setEmailAddres(view.askForText("Type students new address e-mail: "));
+        student.setPhonNumber(view.askForText("Type student's new phone number: "));
+    }
 }
