@@ -4,6 +4,7 @@ import com.codecool.DAO.StaffDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.login.Account;
 import com.codecool.login.AccountsDAO;
+import com.codecool.user.Staff;
 import com.codecool.user.UserController;
 import com.codecool.view.ManagerView;
 
@@ -94,10 +95,6 @@ public class ManagerController extends UserController {
         accountsDAO.makeAccount(employeeId, login, password, type);
     }
 
-    private void editEmployee(){
-        view.printError("Option not available. Contact with administrator");
-    }
-
     private void removeEmployee(){
         String employeeId = view.askForText("Enter employee id: ");
         staffDAO.removeStaff(employeeId);
@@ -117,5 +114,38 @@ public class ManagerController extends UserController {
             }
         }
         return type;
+    }
+
+    private void editEmployee(){
+        int employeeIndex = chooseEmployee();
+        List<Staff> staffList = staffDAO.loadStaff();
+        Staff staff = staffList.get(employeeIndex);
+        staffList.remove(staff);
+        setEmployeeNewData(staff);
+        staffList.add(staff);
+        staffDAO.saveStaff(staffList);
+    }
+
+    private int chooseEmployee() {
+        listEmployeers();
+        boolean isCorrect = false;
+        int choice = -1;
+
+        while (!isCorrect) {
+            choice = view.askForNumber("Type number of employee to edit: ");
+
+            if (choice - 1 >= 0 && choice <= staffDAO.loadStaff().size()) {
+                isCorrect = true;
+            } else {
+                view.printError("WRONG NUMBER!");
+            }
+        }
+        return  choice - 1;
+    }
+
+    private void setEmployeeNewData(Staff staff) {
+        staff.setUserName(view.askForText("Type employee's new username: "));
+        staff.setEmailAddres(view.askForText("Tyoe employee's new address e-mail: "));
+        staff.setPhonNumber(view.askForText("Type employee's new phone number: "));
     }
 }
