@@ -44,22 +44,22 @@ public class StaffDAO {
     }
 
 //    public void addStaff(String id, String userName, String password, String name, String surname,String phoneNumber, String email, String type) {
+    public void addStaff(String id,String userName, String password, String name, String surname,String phoneNumber, String email, String type) {
 
-    public void addStaff(String userName, String password, String name, String surname,String phoneNumber, String email, String type) {
-
-        idBuilder = new IdBuilder();
-        String id = idBuilder.idGenerator(type);
-        List<Staff> staffList = loadStaff();
-        boolean flag = true;
-        while(flag){
-            for ( Staff staff : staffList){
-                if (staff.getId().equals( id )){
-                    id = idBuilder.idGenerator(type);
-                }
-            }
-            flag = false;
-        }
+//        idBuilder = new IdBuilder();
+//        String id = idBuilder.idGenerator(type);
 //        List<Staff> staffList = loadStaff();
+//        boolean flag = true;
+//        while(flag){
+//            for ( Staff staff : staffList){
+//                if (staff.getId().equals( id )){
+//                    id = idBuilder.idGenerator(type);
+//                }
+//            }
+//            flag = false;
+//        }
+
+        List<Staff> staffList = loadStaff();
         staffList.add(new Staff(id, userName, password, name, surname, phoneNumber, email, type));
         saveStaff(staffList);
     }

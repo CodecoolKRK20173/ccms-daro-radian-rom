@@ -1,5 +1,6 @@
 package com.codecool.controller;
 
+import com.codecool.DAO.IdBuilder;
 import com.codecool.DAO.StaffDAO;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.login.Account;
@@ -26,11 +27,13 @@ public class ManagerController extends UserController {
     private ManagerView view;
     private boolean isRunning;
 
+
     public ManagerController(Account account, ManagerView view){
         super(account);
         accountsDAO = new AccountsDAO();
         staffDAO = new StaffDAO();
         studentsDAO = new StudentsDAO();
+
         this.view = view;
     }
 
@@ -92,11 +95,12 @@ public class ManagerController extends UserController {
         String phone = view.askForText("Enter phone number: ");
         String type = chooseTypeOfEmployee();
 
-        staffDAO.addStaff( login, password, name, surname, email, phone, type);
+        IdBuilder idBuilder = new IdBuilder();
 
-        accountsDAO.makeAccount( employeeId, login, password, type);
-//        staffDAO.addStaff(employeeId, login, password, name, surname, email, phone, type);
-//        accountsDAO.makeAccount(employeeId, login, password, type);
+        String employeeId = idBuilder.getId( type );
+
+        staffDAO.addStaff(employeeId, login, password, name, surname, email, phone, type);
+        accountsDAO.makeAccount(employeeId, login, password, type);
     }
 
     private void editEmployee(){

@@ -1,6 +1,7 @@
 package com.codecool.controller;
 
 import com.codecool.DAO.AssignmentDAO;
+import com.codecool.DAO.IdBuilder;
 import com.codecool.DAO.StudentsDAO;
 import com.codecool.DAO.SubmittedAssignmentDAO;
 import com.codecool.login.Account;
@@ -81,15 +82,19 @@ public class MentorController extends UserController {
 
     public void addStudent() {
 //        String id = view.askForText("Enter id : ");
-        String id = buildId("st");
+//        String id = buildId("st");
         String userName = view.askForText("Enter userName : ");
         String password = view.askForText("Enter password : ");
         String name = view.askForText("Enter name : ");
         String surname = view.askForText("Enter surname : ");
         String phonNumber = view.askForText("Enter phonNumber : ");
         String emailAdders = view.askForText("Enter emailAdders : ");
-        studentsDAO.addStudent(id, userName, password, name, surname, phonNumber, emailAdders);
-        accountsDAO.makeAccount(id, userName, password, "student");
+
+        IdBuilder idBuilder = new IdBuilder();
+        String studentId = idBuilder.getId( "student" );
+
+        studentsDAO.addStudent(studentId, userName, password, name, surname, phonNumber, emailAdders);
+        accountsDAO.makeAccount(studentId, userName, password, "student");
     }
 
     public void removeStudent() {
