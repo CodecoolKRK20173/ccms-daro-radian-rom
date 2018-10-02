@@ -55,12 +55,12 @@ public class AccountsDAO {
                             .withAccessLevel(accountAccessLevel)
                             .build();
                 } catch (FieldsNotInitializedException e){
-                    throw new NotImplementedException();
+                    e.printStackTrace();
                 }
             }
         }
-
         throw new IllegalArgumentException();
+        // TODO
     }
 
     private AccessLevel accessLevelValueOf(String accessString){
