@@ -25,16 +25,18 @@ public class AccountsDAO {
     public void makeAccount(String id, String login, String password, String accessLevel){
         loadAllAccounts();
         String[][] newAccounts = new String[accounts.length+1][4];
-        for (int i=0; i<accounts.length; i++){
-            newAccounts[i][LOGIN_COLUMN] = accounts[i][LOGIN_COLUMN];
-            newAccounts[i][PASSWORD_COLUMN] = accounts[i][PASSWORD_COLUMN];
-            newAccounts[i][USER_ID_COLUMN] = accounts[i][USER_ID_COLUMN];
-            newAccounts[i][ACCESS_LEVEL_COLUMN] = accounts[i][ACCESS_LEVEL_COLUMN];
+        int newAccountsIndex = newAccounts.length - 1;
+
+        for (int index=0; index < accounts.length; index++){
+            newAccounts[index][LOGIN_COLUMN] = accounts[index][LOGIN_COLUMN];
+            newAccounts[index][PASSWORD_COLUMN] = accounts[index][PASSWORD_COLUMN];
+            newAccounts[index][USER_ID_COLUMN] = accounts[index][USER_ID_COLUMN];
+            newAccounts[index][ACCESS_LEVEL_COLUMN] = accounts[index][ACCESS_LEVEL_COLUMN];
         }
-        newAccounts[newAccounts.length-1][LOGIN_COLUMN] = login;
-        newAccounts[newAccounts.length-1][PASSWORD_COLUMN] = password;
-        newAccounts[newAccounts.length-1][USER_ID_COLUMN] = id;
-        newAccounts[newAccounts.length-1][ACCESS_LEVEL_COLUMN] = accessLevel;
+        newAccounts[newAccountsIndex][LOGIN_COLUMN] = login;
+        newAccounts[newAccountsIndex][PASSWORD_COLUMN] = password;
+        newAccounts[newAccountsIndex][USER_ID_COLUMN] = id;
+        newAccounts[newAccountsIndex][ACCESS_LEVEL_COLUMN] = accessLevel;
 
         dataLoader.saveContentToFile(newAccounts);
     }
@@ -53,12 +55,12 @@ public class AccountsDAO {
                             .withAccessLevel(accountAccessLevel)
                             .build();
                 } catch (FieldsNotInitializedException e){
-                    throw new NotImplementedException();
+                    e.printStackTrace();
                 }
             }
         }
-
         throw new IllegalArgumentException();
+        // TODO
     }
 
     private AccessLevel accessLevelValueOf(String accessString){

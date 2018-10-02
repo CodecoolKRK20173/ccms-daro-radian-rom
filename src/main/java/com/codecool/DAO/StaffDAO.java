@@ -75,7 +75,7 @@ public class StaffDAO {
         saveStaff(staffList);
     }
 
-    private void saveStaff(List<Staff> staffList) {
+    public void saveStaff(List<Staff> staffList) {
         List<String[]> staffDataToSave = new ArrayList<>();
         for (Staff staff : staffList) {
             String[] staffData = {staff.getId(), staff.getUserName(), staff.getPassword(), staff.getName(), staff.getSurname(),staff.getPhoneNumber() , staff.getEmailAddres(), staff.getType()};

@@ -12,8 +12,10 @@ public class ManagerConsoleView extends UserConsoleView implements ManagerView {
     public void printStudents(List<Student> studentList) {
         clearScreen();
         StringBuilder sb;
+        int numeration = 1;
         for (User student : studentList){
             sb = new StringBuilder();
+            sb.append(numeration + ". ");
             sb.append(student.getId());    sb.append(" | ");
             sb.append(student.getName());  sb.append(" | ");
             sb.append(student.getSurname()); sb.append(" | ");
@@ -21,6 +23,7 @@ public class ManagerConsoleView extends UserConsoleView implements ManagerView {
             sb.append(student.getEmailAddres()); sb.append(" | ");
             sb.append(student.getPhoneNumber());
             println(sb.toString());
+            numeration++;
         }
     }
 
@@ -28,8 +31,10 @@ public class ManagerConsoleView extends UserConsoleView implements ManagerView {
     public void printStaff(List<Staff> staffList) {
         clearScreen();
         StringBuilder sb;
+        int numeration = 1;
         for (Staff staff : staffList){
             sb = new StringBuilder();
+            sb.append(numeration + ". ");
             sb.append(staff.getId());    sb.append(" | ");
             sb.append(staff.getName());  sb.append(" | ");
             sb.append(staff.getSurname()); sb.append(" | ");
@@ -37,6 +42,7 @@ public class ManagerConsoleView extends UserConsoleView implements ManagerView {
             sb.append(staff.getEmailAddres()); sb.append(" | ");
             sb.append(staff.getPhoneNumber());
             println(sb.toString());
+            numeration++;
         }
 
     }

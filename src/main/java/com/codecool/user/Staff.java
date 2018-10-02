@@ -5,5 +5,4 @@ public class Staff extends User {
         super(id, userName, password, name, surname, phonNumber, emailAdders);
         this.type = type;
     }
-
 }
