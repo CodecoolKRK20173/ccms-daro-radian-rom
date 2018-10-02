@@ -20,7 +20,6 @@ public abstract class User {
     String emailAddres;
     String type;
 
-
     public User(String id, String userName,
                    String password, String name,
                    String surname, String phonNumber,
@@ -102,4 +101,3 @@ public abstract class User {
         return sBuilder.toString();
     }
 }
-
