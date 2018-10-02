@@ -10,5 +10,8 @@ public class Student extends User {
             super(id, userName, password, name, surname, phonNumber, emailAdders);
             type = "student";
         }
+
+
+
 }
 

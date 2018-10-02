@@ -10,6 +10,7 @@ import com.codecool.view.ManagerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class ManagerController extends UserController {
     private final String WELCOME_MESSAGE = "";
@@ -82,7 +83,7 @@ public class ManagerController extends UserController {
     }
 
     private void addEmployee(){
-        String employeeId = view.askForText("Enter employee id: ");
+//        String employeeId = view.askForText("Enter employee id: ");
         String login = view.askForText("Enter login: ");
         String password = view.askForText("Enter password: ");
         String name = view.askForText("Enter name: ");
@@ -90,8 +91,12 @@ public class ManagerController extends UserController {
         String email = view.askForText("Enter email: ");
         String phone = view.askForText("Enter phone number: ");
         String type = chooseTypeOfEmployee();
-        staffDAO.addStaff(employeeId, login, password, name, surname, email, phone, type);
-        accountsDAO.makeAccount(employeeId, login, password, type);
+
+        staffDAO.addStaff( login, password, name, surname, email, phone, type);
+
+        accountsDAO.makeAccount( employeeId, login, password, type);
+//        staffDAO.addStaff(employeeId, login, password, name, surname, email, phone, type);
+//        accountsDAO.makeAccount(employeeId, login, password, type);
     }
 
     private void editEmployee(){
@@ -118,4 +123,7 @@ public class ManagerController extends UserController {
         }
         return type;
     }
+
+
+
 }

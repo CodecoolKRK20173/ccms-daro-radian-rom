@@ -17,6 +17,7 @@ public class StaffDAO {
     private final int TYPE_INDEX = 7;
 
     private DataLoader dataLoader;
+    private IdBuilder idBuilder;
 
     public StaffDAO() {
         dataLoader = new DataLoader(SOURCE_FILE_NAME);
@@ -42,8 +43,23 @@ public class StaffDAO {
         return staffOfWantedType;
     }
 
-    public void addStaff(String id, String userName, String password, String name, String surname,String phoneNumber, String email, String type) {
+//    public void addStaff(String id, String userName, String password, String name, String surname,String phoneNumber, String email, String type) {
+
+    public void addStaff(String userName, String password, String name, String surname,String phoneNumber, String email, String type) {
+
+        idBuilder = new IdBuilder();
+        String id = idBuilder.idGenerator(type);
         List<Staff> staffList = loadStaff();
+        boolean flag = true;
+        while(flag){
+            for ( Staff staff : staffList){
+                if (staff.getId().equals( id )){
+                    id = idBuilder.idGenerator(type);
+                }
+            }
+            flag = false;
+        }
+//        List<Staff> staffList = loadStaff();
         staffList.add(new Staff(id, userName, password, name, surname, phoneNumber, email, type));
         saveStaff(staffList);
     }
@@ -67,4 +83,9 @@ public class StaffDAO {
         }
         dataLoader.saveContentToFile(staffDataToSave.toArray(new String[][]{}));
     }
+
+
+
+
+
 }

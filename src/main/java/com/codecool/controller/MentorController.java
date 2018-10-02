@@ -12,6 +12,7 @@ import com.codecool.view.MentorView;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 public class MentorController extends UserController {
 
@@ -79,7 +80,8 @@ public class MentorController extends UserController {
     }
 
     public void addStudent() {
-        String id = view.askForText("Enter id : ");
+//        String id = view.askForText("Enter id : ");
+        String id = buildId("st");
         String userName = view.askForText("Enter userName : ");
         String password = view.askForText("Enter password : ");
         String name = view.askForText("Enter name : ");
@@ -134,5 +136,6 @@ public class MentorController extends UserController {
         submittedAssignments.add(submittedAssignmentToGrade);
         submittedAssignmentDAO.saveSubmittedAssignments(submittedAssignments);
     }
+
 
 }

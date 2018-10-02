@@ -8,6 +8,7 @@ import java.util.List;
 public class StudentsDAO {
 
     DataLoader daoloader;
+    IdBuilder idBuilder;
 
     public StudentsDAO() {
         daoloader = new DataLoader("StudentsCSV.CSV");
@@ -60,6 +61,10 @@ public class StudentsDAO {
 
     public void addStudent( String id, String userName, String password,String  name,
                             String  surname,  String phonNumber, String  emailAdders ){
+
+
+
+
         Student student = new Student( id, userName, password, name, surname, phonNumber, emailAdders );
         List<Student> studentsList = getListOfStudents();
         studentsList.add( student );
@@ -77,5 +82,7 @@ public class StudentsDAO {
         Student student = studentList.get(number);
         return  student;
     }
+
+
 
 }
