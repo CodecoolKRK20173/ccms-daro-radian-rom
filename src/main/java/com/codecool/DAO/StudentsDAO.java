@@ -7,6 +7,15 @@ import java.util.List;
 
 public class StudentsDAO {
 
+    private final int ID_INDEX = 0;
+    private final int USER_NAME_INDEX = 1;
+    private final int PASSWORD_INDEX = 2;
+    private final int NAME_INDEX = 3;
+    private final int SURNAME_INDEX = 4;
+    private final int PHONENUMBER_INDEX = 5;
+    private final int EMAIL_INDEX = 6;
+//    private final int TYPE_INDEX = 7;
+
     DataLoader daoloader;
     IdBuilder idBuilder;
 
@@ -19,13 +28,13 @@ public class StudentsDAO {
         List<Student> studentsList = new ArrayList<Student>();
 
         for ( int i =0; i < loader.length; i++){
-                String id = loader[i][0];
-                String userName = loader[i][1];
-                String password = loader[i][2];
-                String name = loader[i][3];
-                String surname = loader[i][4];
-                String phonNumber = loader[i][5];
-                String emailAdders = loader[i][6];
+                String id = loader[i][ID_INDEX];
+                String userName = loader[i][USER_NAME_INDEX];
+                String password = loader[i][PASSWORD_INDEX];
+                String name = loader[i][NAME_INDEX];
+                String surname = loader[i][SURNAME_INDEX];
+                String phonNumber = loader[i][PHONENUMBER_INDEX];
+                String emailAdders = loader[i][EMAIL_INDEX];
                 studentsList.add(new Student( id,userName, password ,name, surname, phonNumber, emailAdders ));
         }
         return studentsList;
@@ -35,13 +44,13 @@ public class StudentsDAO {
         int listSize = studentList.size();
         String[][] listOfStudents = new String[listSize][7];
         for ( int i =0; i < studentList.size(); i++ ){
-            listOfStudents[i][0] = studentList.get(i).getId();
-            listOfStudents[i][1] = studentList.get(i).getUserName();
-            listOfStudents[i][2] = studentList.get(i).getPassword();
-            listOfStudents[i][3] = studentList.get(i).getName();
-            listOfStudents[i][4] = studentList.get(i).getSurname();
-            listOfStudents[i][5] = studentList.get(i).getPhoneNumber();
-            listOfStudents[i][6] = studentList.get(i).getEmailAddres();
+            listOfStudents[i][ID_INDEX] = studentList.get(i).getId();
+            listOfStudents[i][USER_NAME_INDEX] = studentList.get(i).getUserName();
+            listOfStudents[i][PASSWORD_INDEX] = studentList.get(i).getPassword();
+            listOfStudents[i][NAME_INDEX] = studentList.get(i).getName();
+            listOfStudents[i][SURNAME_INDEX] = studentList.get(i).getSurname();
+            listOfStudents[i][PHONENUMBER_INDEX] = studentList.get(i).getPhoneNumber();
+            listOfStudents[i][EMAIL_INDEX] = studentList.get(i).getEmailAddres();
         }
         daoloader.saveContentToFile(listOfStudents);
     }
@@ -61,10 +70,6 @@ public class StudentsDAO {
 
     public void addStudent( String id, String userName, String password,String  name,
                             String  surname,  String phonNumber, String  emailAdders ){
-
-
-
-
         Student student = new Student( id, userName, password, name, surname, phonNumber, emailAdders );
         List<Student> studentsList = getListOfStudents();
         studentsList.add( student );
