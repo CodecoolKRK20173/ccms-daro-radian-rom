@@ -43,5 +43,6 @@ public class AttendanceDAO {
                 studentAttendanceData.add(String.valueOf(attendance.get(studentName).get(date)));
             }
         }
+        dataLoader.saveContentToFile(attendanceDataToSave.toArray(new String[][]{}));
     }
 }
