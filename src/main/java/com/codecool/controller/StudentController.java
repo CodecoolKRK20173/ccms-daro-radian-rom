@@ -29,7 +29,6 @@ public class StudentController extends UserController {
         submittedAssignmentDAO = new SubmittedAssignmentDAO();
         this.view = view;
         studentID = account.getUserId();
-
     }
 
     @Override
