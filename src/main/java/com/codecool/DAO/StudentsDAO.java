@@ -14,10 +14,8 @@ public class StudentsDAO {
     private final int SURNAME_INDEX = 4;
     private final int PHONENUMBER_INDEX = 5;
     private final int EMAIL_INDEX = 6;
-//    private final int TYPE_INDEX = 7;
 
-    DataLoader daoloader;
-    IdBuilder idBuilder;
+    private DataLoader daoloader;
 
     public StudentsDAO() {
         daoloader = new DataLoader("StudentsCSV.CSV");

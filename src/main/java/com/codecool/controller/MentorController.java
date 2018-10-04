@@ -96,8 +96,6 @@ public class MentorController extends UserController {
     }
 
     public void addStudent() {
-//        String id = view.askForText("Enter id : ");
-//        String id = buildId("st");
         String userName = view.askForText("Enter userName : ");
         String password = view.askForText("Enter password : ");
         String name = view.askForText("Enter name : ");

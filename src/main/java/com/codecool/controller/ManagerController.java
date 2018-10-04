@@ -95,7 +95,6 @@ public class ManagerController extends UserController {
         String type = chooseTypeOfEmployee();
 
         IdBuilder idBuilder = new IdBuilder();
-
         String employeeId = idBuilder.getId( type );
 
         staffDAO.addStaff(employeeId, login, password, name, surname, email, phone, type);
