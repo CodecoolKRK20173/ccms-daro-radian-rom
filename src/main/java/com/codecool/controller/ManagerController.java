@@ -85,7 +85,6 @@ public class ManagerController extends UserController {
     }
 
     private void addEmployee(){
-//        String employeeId = view.askForText("Enter employee id: ");
         String login = view.askForText("Enter login: ");
         String password = view.askForText("Enter password: ");
         String name = view.askForText("Enter name: ");
